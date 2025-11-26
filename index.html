@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Alta Vista Residences · Deer Valley Luxury Rentals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Boutique collection of luxury residences in Park City & Deer Valley. Private, design-forward rentals with hotel-level service." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ---------- Base Reset ---------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      background-color: #050509;
+      color: #f3f4f6;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ---------- Design Tokens ---------- */
+    :root {
+      --bg: #050509;
+      --bg-soft: #050509;
+      --card-bg: #0b0f1a;
+      --card-bg-soft: #111827;
+      --accent: #d4af37;    /* Soft gold */
+      --accent-soft: rgba(212, 175, 55, 0.12);
+      --accent-strong: #f4d278;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --pill-bg: rgba(15, 23, 42, 0.95);
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.85);
+      --radius-lg: 32px;
+      --radius-md: 20px;
+      --radius-pill: 999px;
+      --max-width: 1120px;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #020409 100%);
+      color: var(--text-main);
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    /* ---------- Header / Nav ---------- */
+    .site-header {
+      position: fixed;
+      inset-inline: 0;
+      top: 0;
+      z-index: 40;
+      padding: 18px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 220ms ease;
+      pointer-events: none;
+    }
+
+    .site-header-inner {
+      width: 100%;
+      max-width: var(--max-width);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.88));
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      box-shadow: 0 18px 55px rgba(0, 0, 0, 0.65);
+      pointer-events: auto;
+      backdrop-filter: blur(20px);
+    }
+
+    .site-header.is-scrolled .site-header-inner {
+      padding-block: 8px;
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.97), rgba(15, 23, 42, 1));
+    }
+
+    .logo-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Playfair Display", serif;
+      letter-spacing: 0.11em;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      background: radial-gradient(circle at top, rgba(148, 163, 184, 0.6), rgba(15, 23, 42, 0.9));
+      color: #020617;
+      font-weight: 600;
+    }
+
+    .logo-text-main {
+      font-size: 0.78rem;
+    }
+    .logo-text-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: none;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 3px 0;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+      transition: width 180ms ease;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      font-size: 0.78rem;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 180ms ease;
+      white-space: nowrap;
+    }
+
+    .btn-outline {
+      border-color: rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--text-main);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at top left, var(--accent-strong), var(--accent));
+      color: #020617;
+      border-color: rgba(180, 132, 31, 0.7);
+      box-shadow: 0 14px 38px rgba(212, 175, 55, 0.45);
+    }
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(212, 175, 55, 0.5);
+    }
+
+    .btn-icon {
+      font-size: 1rem;
+      translate: 0 0;
+      transition: translate 160ms ease;
+    }
+    .btn:hover .btn-icon {
+      translate: 3px 0;
+    }
+
+    /* ---------- Layout Helpers ---------- */
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding-inline: 6%;
+    }
+
+    section {
+      padding-inline: 6%;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 0 80px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 40px;
+      align-items: center;
+      width: 100%;
+      max-width: var(--max-width);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      backdrop-filter: blur(12px);
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      margin: 18px 0 12px;
+      font-size: clamp(2.4rem, 3.2vw, 3.1rem);
+      line-height: 1.1;
+      font-family: "Playfair Display", serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero-title span {
+      display: block;
+      font-weight: 500;
+    }
+
+    .hero-title-em {
+      background: linear-gradient(120deg, #f9fafb, var(--accent-strong));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      margin-bottom: 24px;
+      font-size: 0.96rem;
+      max-width: 31rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-bottom: 24px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .meta-label {
+      color: var(--text-muted);
+    }
+    .meta-value {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .hero-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .hero-note strong {
+      color: #e5e7eb;
+    }
+
+    /* ---------- Hero Image Card ---------- */
+    .hero-media-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, #1f2933, #020617);
+      overflow: hidden;
+      padding: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      box-shadow: var(--shadow-soft);
+      isolation: isolate;
+    }
+
+    .hero-media-inner {
+      border-radius: calc(var(--radius-lg) - 10px);
+      overflow: hidden;
+      position: relative;
+      min-height: 340px;
+      background-image:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.2)),
+        url("https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1600");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-media-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent 35%);
+    }
+
+    .hero-media-footer {
+      position: absolute;
+      inset-inline: 18px;
+      bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      color: #f9fafb;
+    }
+
+    .media-footer-text {
+      font-size: 0.8rem;
+    }
+
+    .media-footer-text h3 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .media-footer-text p {
+      margin: 0;
+      color: var(--text-muted);
+    }
+
+    .media-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.74rem;
+    }
+
+    .tag {
+      padding: 5px 9px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 7px 12px;
+      font-size: 0.7rem;
+      border-radius: var(--radius-pill);
+      background: radial-gradient(circle at top left, var(--accent-strong), var(--accent));
+      color: #020617;
+      border: 1px solid rgba(148, 163, 184, 0.75);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ---------- Sections ---------- */
+
+    .section {
+      padding-block: 70px;
+    }
+    .section-header {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto 32px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .section-title-group {
+      max-width: 420px;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-subtitle {
+      margin-top: 10px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      max-width: 480px;
+    }
+
+    .section-cta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ---------- Residences Section ---------- */
+    .residences {
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), #020617);
+    }
+
+    .residences-grid {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.6fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .property-card-main {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, #111827, #020617);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      padding: 22px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .property-tag-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .property-tag-row .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 11px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+    }
+
+    .pill-badge {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+    }
+
+    .property-title {
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .property-location {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .property-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.4fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .property-copy {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .property-specs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 0.8rem;
+    }
+
+    .spec {
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+    }
+
+    .spec-label {
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 3px;
+    }
+    .spec-value {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .property-highlights {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: grid;
+      gap: 6px;
+    }
+    .property-highlights li::before {
+      content: "•";
+      color: var(--accent-strong);
+      margin-right: 6px;
+    }
+
+    .property-card-media {
+      border-radius: var(--radius-md);
+      background: #020617;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      font-size: 0.8rem;
+    }
+
+    .property-card-media-img {
+      position: relative;
+      min-height: 210px;
+      background-image:
+        linear-gradient(160deg, rgba(15, 23, 42, 0.4), rgba(0, 0, 0, 0.25)),
+        url("https://images.pexels.com/photos/261187/pexels-photo-261187.jpeg?auto=compress&cs=tinysrgb&w=1600");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .media-overlay-label {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.72rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+
+    .property-card-media-body {
+      padding: 12px 14px 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .property-card-media-copy {
+      color: var(--text-muted);
+      max-width: 240px;
+    }
+
+    .property-card-media-copy strong {
+      color: #e5e7eb;
+    }
+
+    /* Upcoming */
+    .upcoming-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .upcoming-card {
+      border-radius: var(--radius-md);
+      padding: 14px 14px 16px;
+      background: radial-gradient(circle at top left, #0b1120, #020617);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.78rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .upcoming-title {
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .upcoming-status {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-strong);
+    }
+
+    .upcoming-meta {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    /* ---------- Experience Section ---------- */
+    .experience {
+      background: radial-gradient(circle at top, #020617, #020409);
+    }
+
+    .experience-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.8fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .experience-copy {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .experience-copy p {
+      margin: 0 0 12px;
+    }
+
+    .experience-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      gap: 10px;
+      font-size: 0.84rem;
+    }
+
+    .experience-list li {
+      padding: 9px 11px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .check {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid var(--accent-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--accent-strong);
+    }
+
+    .experience-cards {
+      display: grid;
+      gap: 12px;
+    }
+
+    .experience-card {
+      border-radius: var(--radius-md);
+      padding: 16px 16px 18px;
+      background: radial-gradient(circle at top, #111827, #020617);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.84rem;
+    }
+
+    .experience-card h3 {
+      margin: 0 0 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .experience-card p {
+      margin: 0;
+      color: var(--text-muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 9px;
+      font-size: 0.74rem;
+    }
+
+    .pill-soft {
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+    }
+
+    /* ---------- About & Contact ---------- */
+    .about-contact {
+      background: radial-gradient(circle at top, #020617, #02010a);
+    }
+
+    .about-contact-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.3fr);
+      gap: 26px;
+      align-items: start;
+    }
+
+    .about-card {
+      border-radius: var(--radius-lg);
+      padding: 22px 22px 24px;
+      background: radial-gradient(circle at top left, #111827, #020617);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .about-card h3 {
+      margin: 0 0 10px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f9fafb;
+    }
+
+    .about-card p {
+      margin: 0 0 10px;
+    }
+
+    .about-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      font-size: 0.8rem;
+      margin-top: 10px;
+    }
+
+    .about-meta-item {
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+    }
+
+    .about-meta-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+      display: block;
+    }
+
+    .about-meta-value {
+      color: #e5e7eb;
+    }
+
+    .contact-card {
+      border-radius: var(--radius-lg);
+      padding: 22px 22px 26px;
+      background: radial-gradient(circle at top right, #111827, #020617);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.86rem;
+    }
+
+    .contact-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .contact-card h3 {
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .contact-tag {
+      font-size: 0.72rem;
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      color: var(--text-muted);
+    }
+
+    .contact-copy {
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .field-group {
+      display: grid;
+      gap: 4px;
+    }
+
+    label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      padding: 9px 11px;
+      font-size: 0.82rem;
+      color: #f9fafb;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #6b7280;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent-strong);
+      box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.4);
+      background: rgba(15, 23, 42, 1);
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .contact-footer {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    /* ---------- Footer ---------- */
+    .site-footer {
+      padding: 22px 6% 26px;
+      border-top: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      background: #020617;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .residences-grid,
+      .experience-grid,
+      .about-contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 110px;
+      }
+
+      .hero-grid {
+        gap: 26px;
+      }
+
+      .hero-media-card {
+        order: -1;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .site-header-inner {
+        padding-inline: 14px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding-top: 105px;
+      }
+
+      .hero-title {
+        font-size: 2.1rem;
+      }
+
+      .hero-media-card {
+        padding: 12px;
+      }
+
+      .hero-media-inner {
+        min-height: 260px;
+      }
+
+      .property-body {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .property-specs-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .upcoming-grid,
+      .field-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .site-header-inner {
+        border-radius: 999px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- Header / Nav -->
+    <header class="site-header">
+      <div class="site-header-inner">
+        <div class="logo-lockup">
+          <div class="logo-mark">A</div>
+          <div>
+            <div class="logo-text-main">Alta Vista Residences</div>
+            <div class="logo-text-sub">Park City · Deer Valley</div>
+          </div>
+        </div>
+        <nav class="nav-links">
+          <a href="#residences">Residences</a>
+          <a href="#experience">Experience</a>
+          <a href="#about">About</a>
+          <a href="#contact">Inquire</a>
+        </nav>
+        <div class="nav-cta">
+          <a href="#contact" class="btn btn-outline">Request Availability</a>
+          <a href="#residences" class="btn btn-primary">
+            View Penthouse
+            <span class="btn-icon">↗</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              <span>New · Private Collection</span>
+            </div>
+            <h1 class="hero-title">
+              <span>Deer Valley</span>
+              <span class="hero-title-em">Mountain Luxury</span>
+            </h1>
+            <p class="hero-subtitle">
+              A curated portfolio of design-forward residences in Park City — starting with a fully renovated penthouse in Lower Deer Valley, moments from the slopes and Old Town.
+            </p>
+
+            <div class="hero-meta-row">
+              <div class="hero-meta-item">
+                <span class="meta-label">Flagship</span>
+                <span class="meta-value">Lower Deer Valley Penthouse</span>
+              </div>
+              <div class="hero-meta-item">
+                <span class="meta-label">2025</span>
+                <span class="meta-value">Full Renovation In Progress</span>
+              </div>
+              <div class="hero-meta-item">
+                <span class="meta-label">Portfolio</span>
+                <span class="meta-value">Deer Valley East &amp; Beyond</span>
+              </div>
+            </div>
+
+            <div class="hero-ctas">
+              <a href="#residences" class="btn btn-primary">
+                Explore Residences
+                <span class="btn-icon">➝</span>
+              </a>
+              <a href="#contact" class="btn btn-outline">
+                Inquire for Upcoming Stays
+              </a>
+            </div>
+
+            <p class="hero-note">
+              <strong>Bespoke stays.</strong> Direct owner communication, elevated finishes, and a focus on families and groups who value space, privacy, and service.
+            </p>
+          </div>
+
+          <aside class="hero-media-card">
+            <div class="hero-media-inner">
+              <div class="hero-media-gradient"></div>
+              <div class="hero-badge">Park City · Utah</div>
+              <div class="hero-media-footer">
+                <div class="media-footer-text">
+                  <h3>Lower Deer Valley Penthouse</h3>
+                  <p>Opening Winter 2025 · Concept Render</p>
+                  <div class="media-specs">
+                    <span class="tag">
+                      <span class="tag-dot"></span> 5 Bedrooms
+                    </span>
+                    <span class="tag">4.5 Bathrooms</span>
+                    <span class="tag">Sleeps 10–12</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Residences -->
+      <section id="residences" class="section residences">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-label">Residences</div>
+            <h2 class="section-title">Thoughtfully curated alpine homes</h2>
+            <p class="section-subtitle">
+              Every residence is renovated with a residential designer’s eye and managed with a host’s attention to detail — so it feels like your own mountain home, without the maintenance.
+            </p>
+          </div>
+          <div class="section-cta">
+            Launching with our flagship Lower Deer Valley penthouse, with additional Deer Valley East and future Park City opportunities under evaluation.
+          </div>
+        </div>
+
+        <div class="residences-grid">
+          <!-- Main Property -->
+          <article class="property-card-main">
+            <div class="property-tag-row">
+              <div class="pill">
+                <span class="pill-badge">Flagship</span>
+                <span>Now reserving select stays from completion</span>
+              </div>
+              <div>Lower Deer Valley · Park City</div>
+            </div>
+
+            <header>
+              <h3 class="property-title">Pinnacle Ridge Penthouse</h3>
+              <div class="property-location">
+                Walking distance to Deer Valley Resort &mdash; minutes to Old Town Park City
+              </div>
+            </header>
+
+            <div class="property-body">
+              <div>
+                <div class="property-specs-grid">
+                  <div class="spec">
+                    <span class="spec-label">Bedrooms</span>
+                    <span class="spec-value">5</span>
+                  </div>
+                  <div class="spec">
+                    <span class="spec-label">Bathrooms</span>
+                    <span class="spec-value">4 full + 1 half</span>
+                  </div>
+                  <div class="spec">
+                    <span class="spec-label">Guests</span>
+                    <span class="spec-value">Up to 10–12</span>
+                  </div>
+                </div>
+
+                <div class="property-copy">
+                  <p>
+                    This expansive, fully renovated penthouse is designed for multi-generational families and close friends: generous gathering spaces, a chef’s kitchen, and private bedroom suites with mountain views.
+                  </p>
+                  <ul class="property-highlights">
+                    <li>Complete interior renovation and furnishing curated for luxury rentals</li>
+                    <li>Open-plan great room with fireplace and floor-to-ceiling windows</li>
+                    <li>Dedicated bunk / kids’ suite plus separate adult suites</li>
+                    <li>Steps from Deer Valley ski access and minutes to Park City Main Street</li>
+                  </ul>
+                </div>
+
+                <div class="hero-ctas">
+                  <a href="#contact" class="btn btn-primary">
+                    Request Launch Availability
+                    <span class="btn-icon">➝</span>
+                  </a>
+                  <a href="#experience" class="btn btn-outline">
+                    View Guest Experience
+                  </a>
+                </div>
+              </div>
+
+              <aside class="property-card-media">
+                <div class="property-card-media-img">
+                  <!-- Replace this background image in CSS with real photography when available -->
+                  <div class="media-overlay-label">
+                    <span class="tag-dot"></span>
+                    Rendered concept · Final finishes may vary
+                  </div>
+                </div>
+                <div class="property-card-media-body">
+                  <div class="property-card-media-copy">
+                    <strong>Design-forward renovation</strong>
+                    <br />
+                    Warm modern finishes, layered lighting, and durable yet elevated materials optimized for luxury rental use.
+                  </div>
+                  <div class="pill-soft">
+                    From families for families<br />
+                    <span style="color: var(--text-muted);">Owner-curated details.</span>
+                  </div>
+                </div>
+              </aside>
+            </div>
+
+            <div class="upcoming-grid">
+              <div class="upcoming-card">
+                <div class="upcoming-title">
+                  <span>Deer Valley East Penthouse</span>
+                  <span class="upcoming-status">In Process</span>
+                </div>
+                <div class="upcoming-meta">
+                  Reservation in progress for a second Deer Valley residence, expanding the portfolio with complementary layouts and views.
+                </div>
+              </div>
+              <div class="upcoming-card">
+                <div class="upcoming-title">
+                  <span>Future Acquisitions</span>
+                  <span class="upcoming-status">Evaluating</span>
+                </div>
+                <div class="upcoming-meta">
+                  Additional Park City and mountain destinations will be added selectively as opportunities meet our design and location standards.
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience" class="section experience">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-label">Experience</div>
+            <h2 class="section-title">More than a stay</h2>
+            <p class="section-subtitle">
+              We blend the best of a private residence with the ease of a boutique hotel: pre-arrival planning, thoughtful touches, and trusted partners on the ground in Park City.
+            </p>
+          </div>
+        </div>
+
+        <div class="experience-grid">
+          <div class="experience-copy">
+            <p>
+              Every reservation begins with a conversation. We want to understand how you travel &mdash; kids, grandparents, friends, off-mountain days &mdash; and then tailor the stay around that.
+            </p>
+            <p>
+              As we expand the collection, a consistent thread will run through each home: generous space, considered design, and the feeling that everything you need is exactly where you expect it.
+            </p>
+
+            <ul class="experience-list">
+              <li>
+                <span class="check">✓</span>
+                Pre-arrival planning: groceries, crib / high chair, gear, restaurant suggestions
+              </li>
+              <li>
+                <span class="check">✓</span>
+                Local partnerships for private chefs, massage, transportation, and experiences
+              </li>
+              <li>
+                <span class="check">✓</span>
+                Hotel-level linens, amenities, and professional housekeeping
+              </li>
+              <li>
+                <span class="check">✓</span>
+                Direct contact with ownership and on-the-ground support
+              </li>
+            </ul>
+          </div>
+
+          <div class="experience-cards">
+            <article class="experience-card">
+              <h3>Designed for families &amp; friends</h3>
+              <p>
+                Spacious gathering areas and separate bedroom suites make it easy to share one home without sacrificing privacy. Thoughtful bunk spaces and kid-friendly details help everyone feel at ease.
+              </p>
+              <div class="pill-row">
+                <span class="pill-soft">Multi-generational trips</span>
+                <span class="pill-soft">Long weekends</span>
+                <span class="pill-soft">Holiday stays</span>
+              </div>
+            </article>
+
+            <article class="experience-card">
+              <h3>Seasonal stays, all year</h3>
+              <p>
+                Winter brings skiing and cozy nights by the fire. Summer reveals hiking, biking, and long evenings on the deck. Our homes are intentionally equipped for all seasons, not just ski weeks.
+              </p>
+              <div class="pill-row">
+                <span class="pill-soft">Winter ski escapes</span>
+                <span class="pill-soft">Summer in the mountains</span>
+                <span class="pill-soft">Shoulder-season retreats</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- About & Contact -->
+      <section id="about" class="section about-contact">
+        <div class="section-header">
+          <div class="section-title-group">
+            <div class="section-label">About &amp; Contact</div>
+            <h2 class="section-title">A growing, intentional portfolio</h2>
+            <p class="section-subtitle">
+              Starting with one penthouse in Lower Deer Valley, we’re building a small, curated collection instead of a large inventory &mdash; so every home receives personal attention.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-contact-grid">
+          <article class="about-card">
+            <h3>Owner-led hospitality</h3>
+            <p>
+              Alta Vista Residences is an owner-operated collection created by a family who spends significant time in Park City and values the same things our guests do: comfort, design, and ease.
+            </p>
+            <p>
+              Renovations, furnishings, and services are selected with long-term quality in mind. As we add Deer Valley East and future properties, that standard will stay the same.
+            </p>
+
+            <div class="about-meta-grid">
+              <div class="about-meta-item">
+                <span class="about-meta-label">Base</span>
+                <span class="about-meta-value">Park City, Utah · U.S.</span>
+              </div>
+              <div class="about-meta-item">
+                <span class="about-meta-label">Focus</span>
+                <span class="about-meta-value">Luxury mountain rentals</span>
+              </div>
+              <div class="about-meta-item">
+                <span class="about-meta-label">Initial Portfolio</span>
+                <span class="about-meta-value">Lower Deer Valley &amp; Deer Valley East</span>
+              </div>
+              <div class="about-meta-item">
+                <span class="about-meta-label">Approach</span>
+                <span class="about-meta-value">Slow, intentional growth</span>
+              </div>
+            </div>
+          </article>
+
+          <article id="contact" class="contact-card">
+            <div class="contact-card-header">
+              <h3>Inquire for stays</h3>
+              <div class="contact-tag">Direct &amp; discreet</div>
+            </div>
+            <p class="contact-copy">
+              Share your preferred dates and group details below. We’ll follow up personally with current availability for the Lower Deer Valley penthouse and, as they come online, Deer Valley East and future homes.
+            </p>
+
+            <form class="contact-form" action="#" method="post">
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Your full name" required />
+                </div>
+                <div class="field-group">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="name@example.com" required />
+                </div>
+              </div>
+
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="dates">Preferred dates</label>
+                  <input id="dates" name="dates" type="text" placeholder="e.g. Feb 10–17, 2026" />
+                </div>
+                <div class="field-group">
+                  <label for="guests">Guests</label>
+                  <input id="guests" name="guests" type="number" min="1" placeholder="Number of guests" />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="interest">Which residence?</label>
+                <select id="interest" name="interest">
+                  <option value="lower-deer-valley">Lower Deer Valley Penthouse</option>
+                  <option value="deer-valley-east">Deer Valley East Penthouse (in process)</option>
+                  <option value="future">Future Park City opportunities</option>
+                  <option value="undecided">Open to recommendation</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label for="message">Trip details</label>
+                <textarea id="message" name="message" placeholder="Share who’s traveling, any flexibility on dates, and what kind of stay you’re planning."></textarea>
+              </div>
+
+              <div class="contact-footer">
+                <button type="submit" class="btn btn-primary">
+                  Send Inquiry
+                  <span class="btn-icon">➝</span>
+                </button>
+                <div>
+                  We typically respond within 1 business day.<br />
+                  For urgent requests, you can also reach out by phone or WhatsApp once we connect.
+                </div>
+              </div>
+            </form>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>&copy; <span id="year"></span> Alta Vista Residences. All rights reserved.</div>
+        <div class="footer-links">
+          <span>Park City · Utah</span>
+          <span>&bull;</span>
+          <span>Luxury Rentals · Private Collection</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Smooth scrolling for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (event) {
+        const targetId = this.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          event.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Header style on scroll
+    const header = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.classList.add('is-scrolled');
+      } else {
+        header.classList.remove('is-scrolled');
+      }
+    });
+
+    // Current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
