@@ -62,17 +62,19 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-    /* Subtle luxury plaster texture overlay */
+/* Subtle luxury plaster texture overlay (Base64 embedded) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: url("bg-plaster.jpg");
+
+  background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQEBUQEBIVFRUVFRUQFRUVFRUVFRUVFRUWFhUVFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGxAQGy0mICYvLS0tLS0tLS0tLS0vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAKgBLAMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAFAAIDBAYBBwj/xABCEAACAQMDAgMFBQcCBQQDAAABAgMABBESIQUGMUFREyJhcYEykaGxFDNCUrHB0RUjYvEHI1OCkqKy8SQzssL/xAAaAQADAQEBAQAAAAAAAAAAAAAAAQIDBAUG/8QAMBEAAgIBAwMCBgICAgMBAAAAAAECEQMSITEEE0FRYXEikQUTgZGhsfAUQlLB0SRC/9oADAMBAAIRAxEAPwD0KIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICL/2Q==");
+
   background-size: cover;
   background-position: center;
-  opacity: 0.06;           /* tweak between 0.04 and 0.09 */
+  opacity: 0.055;
   mix-blend-mode: multiply;
 }
 
