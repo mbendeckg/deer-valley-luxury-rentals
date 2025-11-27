@@ -232,20 +232,26 @@
   justify-content: center;
   overflow: hidden; /* important for the background */
 }
-
-/* Soft alpine background behind hero */
+/* Mountain / snow background behind HERO – sharper & more inviting */
 .hero::before {
   content: "";
   position: absolute;
   inset: -40px;
   z-index: -1;
   background-image:
-    linear-gradient(to right, rgba(247, 243, 236, 0.96), rgba(247, 243, 236, 0.9) 38%, rgba(15, 23, 42, 0.32)),
-    url("https://images.pexels.com/photos/225981/pexels-photo-225981.jpeg?auto=compress&cs=tinysrgb&w=1600");
+    /* warm overlay so text stays readable on left */
+    linear-gradient(
+      to right,
+      rgba(247, 243, 236, 0.98) 0%,
+      rgba(247, 243, 236, 0.94) 32%,
+      rgba(247, 243, 236, 0.35) 55%,
+      rgba(15, 23, 42, 0.45) 100%
+    ),
+    url("https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?auto=compress&cs=tinysrgb&w=1600");
   background-size: cover;
-  background-position: center;
-  filter: blur(2px);
-  transform: scale(1.03); /* avoids blur cutting at edges */
+  background-position: center 28%;
+  filter: none;          /* remove heavy blur */
+  transform: none;
 }
     .eyebrow {
       display: inline-flex;
@@ -649,19 +655,25 @@
   position: relative;
   padding: 90px 6%;
   overflow: hidden;
-}   /* Beach / coastal background */
+}   /* Beach / coastal background for EXPERIENCE – clearer & warm */
 .experience::before {
   content: "";
   position: absolute;
   inset: -40px;
   z-index: -1;
   background-image:
-    linear-gradient(to left, rgba(246, 242, 235, 0.95), rgba(246, 242, 235, 0.9) 40%, rgba(15, 23, 42, 0.25)),
-    url("https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1600");
+    linear-gradient(
+      to left,
+      rgba(246, 242, 235, 0.97) 0%,
+      rgba(246, 242, 235, 0.9) 38%,
+      rgba(246, 242, 235, 0.3) 62%,
+      rgba(15, 23, 42, 0.3) 100%
+    ),
+    url("https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?auto=compress&cs=tinysrgb&w=1600");
   background-size: cover;
-  background-position: center;
-  filter: blur(2px);
-  transform: scale(1.03);
+  background-position: center center;
+  filter: blur(0.5px);   /* just a touch so it feels soft, not fuzzy */
+  transform: none;
 }
     .experience-grid {
       max-width: var(--max-width);
