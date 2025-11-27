@@ -51,17 +51,19 @@
       --radius-pill: 999px;
       --max-width: 1140px;
     }
-
-    body {
-      background:
-        radial-gradient(circle at top left, #fdfaf5 0%, #f5f0e7 40%, #ece2d3 100%);
-      color: var(--text-main);
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
-      position: relative;
-      overflow-x: hidden;
-    }
-
+  body {
+  background: #f7f3ec;
+  color: var(--text-main);
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+/* keep page above backgrounds */
+.page {
+  position: relative;
+  z-index: 1;
+}
     /* Soft vignette for extra depth */
     body::before {
       content: "";
@@ -220,24 +222,31 @@
       translate: 3px 0;
     }
 
-    /* ---------- Hero ---------- */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      padding: 150px 6% 110px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-grid {
-      width: 100%;
-      max-width: var(--max-width);
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.15fr);
-      gap: 46px;
-      align-items: center;
-    }
+    /* ---------- Hero ---------- */  
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding: 150px 6% 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* important for the background */
+}
 
+/* Soft alpine background behind hero */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgba(247, 243, 236, 0.96), rgba(247, 243, 236, 0.9) 38%, rgba(15, 23, 42, 0.32)),
+    url("https://images.pexels.com/photos/225981/pexels-photo-225981.jpeg?auto=compress&cs=tinysrgb&w=1600");
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px);
+  transform: scale(1.03); /* avoids blur cutting at edges */
+}
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -637,8 +646,23 @@
 
     /* ---------- Experience ---------- */
     .experience {
-      background: #f6f2eb;
-    }
+  position: relative;
+  padding: 90px 6%;
+  overflow: hidden;
+}   /* Beach / coastal background */
+.experience::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  z-index: -1;
+  background-image:
+    linear-gradient(to left, rgba(246, 242, 235, 0.95), rgba(246, 242, 235, 0.9) 40%, rgba(15, 23, 42, 0.25)),
+    url("https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1600");
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px);
+  transform: scale(1.03);
+}
     .experience-grid {
       max-width: var(--max-width);
       margin: 0 auto;
