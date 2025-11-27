@@ -16,7 +16,6 @@
   />
 
   <style>
-    /* ---------- Base Reset ---------- */
     *, *::before, *::after {
       box-sizing: border-box;
     }
@@ -34,53 +33,53 @@
       color: inherit;
     }
 
-    /* ---------- Design Tokens (Cormont-inspired, light & warm) ---------- */
     :root {
-      --bg: #f5f3ee;
-      --bg-soft: #f7f5f0;
+      --bg: #f7f3ec;
+      --bg-soft: #f8f5ef;
       --card-bg: #ffffff;
-      --card-bg-soft: #f1eee7;
+      --card-bg-soft: #f3eee5;
       --accent: #c69a59;
-      --accent-soft: rgba(198, 154, 89, 0.12);
+      --accent-soft: rgba(198, 154, 89, 0.14);
       --accent-strong: #e0b975;
       --border-subtle: rgba(209, 213, 219, 0.9);
       --border-soft: rgba(209, 213, 219, 0.7);
       --text-main: #14151a;
       --text-muted: #6b7280;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.14);
-      --radius-lg: 32px;
-      --radius-md: 20px;
+      --shadow-soft: 0 20px 60px rgba(15, 23, 42, 0.18);
+      --radius-lg: 36px;
+      --radius-md: 22px;
       --radius-pill: 999px;
-      --max-width: 1120px;
+      --max-width: 1140px;
     }
-  body {
-  background: radial-gradient(circle at top, #ffffff 0%, #f5f3ee 42%, #ece8df 100%);
-  color: var(--text-main);
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  position: relative;
-  overflow-x: hidden;
-}
 
-/* Ensures content stays above plaster texture */
-.page {
-  position: relative;
-  z-index: 1;
-}
-/* Subtle luxury plaster texture overlay (Base64 embedded) */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;              /* was -1 */
-  pointer-events: none;
+    body {
+      background:
+        radial-gradient(circle at top left, #fdfaf5 0%, #f5f0e7 40%, #ece2d3 100%);
+      color: var(--text-main);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-  background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQEBUQEBIVFRUVFRUQFRUVFRUVFRUVFRUWFhUVFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGxAQGy0mICYvLS0tLS0tLS0tLS0vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAKgBLAMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAFAAIDBAYBBwj/xABCEAACAQMDAgMFBQcCBQQDAAABAgMABBESIQUGMUFREyJhcYEykaGxFDNCUrHB0RUjYvEHI1OCkqKy8SQzssL/xAAaAQADAQEBAQAAAAAAAAAAAAAAAQIDBAUG/8QAMBEAAgIBAwMCBgICAgMBAAAAAAECEQMSITEEE0FRYXEikQUTgZGhsfAUQlLB0SRC/9oADAMBAAIRAxEAPwD0KIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICL/2Q==");
+    /* Soft vignette for extra depth */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(circle at top left, rgba(0,0,0,0.05), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(0,0,0,0.055), transparent 60%);
+      mix-blend-mode: multiply;
+      opacity: 0.6;
+    }
 
-  background-size: cover;
-  background-position: center;
-  opacity: 0.12;           /* TEMP stronger so you can see it */
-  mix-blend-mode: multiply;
-}
+    .page {
+      position: relative;
+      z-index: 1;
+    }
 
     /* ---------- Header ---------- */
     .site-header {
@@ -88,7 +87,7 @@ body::before {
       inset-inline: 0;
       top: 0;
       z-index: 40;
-      padding: 18px 6%;
+      padding: 20px 6%;
       display: flex;
       justify-content: center;
       pointer-events: none;
@@ -100,19 +99,19 @@ body::before {
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 10px 18px;
+      padding: 12px 22px;
       border-radius: var(--radius-pill);
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       border: 1px solid var(--border-soft);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09);
       backdrop-filter: blur(18px);
       pointer-events: auto;
       transition: padding 180ms ease, background 180ms ease, box-shadow 180ms ease;
     }
     .site-header.is-scrolled .site-header-inner {
-      padding-block: 8px;
+      padding-block: 9px;
       background: rgba(255, 255, 255, 0.98);
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.1);
     }
 
     .logo-lockup {
@@ -125,8 +124,8 @@ body::before {
       text-transform: uppercase;
     }
     .logo-mark {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       border: 1px solid var(--border-soft);
       display: flex;
@@ -135,10 +134,10 @@ body::before {
       background: #ffffff;
       color: #111827;
       font-weight: 600;
-      font-size: 0.86rem;
+      font-size: 0.9rem;
     }
     .logo-text-main {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
     }
     .logo-text-sub {
       font-size: 0.7rem;
@@ -180,8 +179,8 @@ body::before {
 
     .btn {
       border-radius: var(--radius-pill);
-      padding: 8px 18px;
-      font-size: 0.78rem;
+      padding: 9px 20px;
+      font-size: 0.8rem;
       border: 1px solid transparent;
       display: inline-flex;
       align-items: center;
@@ -205,12 +204,12 @@ body::before {
       background: radial-gradient(circle at top left, var(--accent-strong), var(--accent));
       color: #ffffff;
       border-color: rgba(198, 154, 89, 0.5);
-      box-shadow: 0 14px 30px rgba(198, 154, 89, 0.28);
+      box-shadow: 0 16px 32px rgba(198, 154, 89, 0.32);
     }
     .btn-primary:hover {
       filter: brightness(1.03);
       transform: translateY(-1px);
-      box-shadow: 0 16px 34px rgba(198, 154, 89, 0.35);
+      box-shadow: 0 18px 38px rgba(198, 154, 89, 0.4);
     }
     .btn-icon {
       font-size: 1rem;
@@ -225,23 +224,17 @@ body::before {
     .hero {
       position: relative;
       min-height: 100vh;
-      padding: 140px 6% 90px;
+      padding: 150px 6% 110px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(
-        160deg,
-        #fdfcf9 0%,
-        #f5f3ee 40%,
-        #ece8df 100%
-      );
     }
     .hero-grid {
       width: 100%;
       max-width: var(--max-width);
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap: 40px;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.15fr);
+      gap: 46px;
       align-items: center;
     }
 
@@ -249,12 +242,12 @@ body::before {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: var(--radius-pill);
       font-size: 0.72rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid var(--border-soft);
       color: var(--text-muted);
     }
@@ -266,11 +259,11 @@ body::before {
     }
 
     .hero-title {
-      margin: 18px 0 12px;
-      font-size: clamp(2.4rem, 3.2vw, 3.1rem);
-      line-height: 1.1;
+      margin: 22px 0 10px;
+      font-size: clamp(2.6rem, 3.3vw, 3.2rem);
+      line-height: 1.08;
       font-family: "Playfair Display", serif;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
     .hero-title span {
@@ -281,9 +274,9 @@ body::before {
     }
 
     .hero-subtitle {
-      margin-bottom: 22px;
-      font-size: 0.98rem;
-      max-width: 32rem;
+      margin-bottom: 26px;
+      font-size: 1rem;
+      max-width: 33rem;
       color: var(--text-muted);
     }
 
@@ -291,16 +284,16 @@ body::before {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-bottom: 22px;
-      font-size: 0.82rem;
+      margin-bottom: 24px;
+      font-size: 0.84rem;
     }
     .hero-meta-item {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 6px 12px;
+      padding: 7px 13px;
       border-radius: var(--radius-pill);
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       border: 1px solid var(--border-soft);
       color: var(--text-muted);
     }
@@ -316,52 +309,52 @@ body::before {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .hero-note {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
-      max-width: 30rem;
+      max-width: 31rem;
     }
     .hero-note strong {
       color: var(--text-main);
     }
 
-    /* Hero media card */
     .hero-media-card {
       position: relative;
       border-radius: var(--radius-lg);
       background: var(--card-bg);
       overflow: hidden;
-      padding: 16px;
+      padding: 18px;
       border: 1px solid var(--border-soft);
       box-shadow: var(--shadow-soft);
       isolation: isolate;
     }
     .hero-media-inner {
-      border-radius: calc(var(--radius-lg) - 10px);
+      border-radius: calc(var(--radius-lg) - 12px);
       overflow: hidden;
       position: relative;
-      min-height: 340px;
+      min-height: 420px;
       background-image:
-        linear-gradient(120deg, rgba(0,0,0,0.08), rgba(0,0,0,0.02)),
-        url("https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1600");
+        linear-gradient(140deg, rgba(0,0,0,0.22), rgba(0,0,0,0.05)),
+        url("https://images.pexels.com/photos/261187/pexels-photo-261187.jpeg?auto=compress&cs=tinysrgb&w=1600");
       background-size: cover;
       background-position: center;
+      transform: translateZ(0);
     }
     .hero-media-gradient {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(15, 23, 42, 0.42), transparent 35%);
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.55), transparent 38%);
     }
     .hero-badge {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 7px 12px;
+      top: 22px;
+      right: 22px;
+      padding: 7px 13px;
       font-size: 0.7rem;
       border-radius: var(--radius-pill);
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.96);
       border: 1px solid var(--border-soft);
       color: var(--text-muted);
       letter-spacing: 0.16em;
@@ -369,20 +362,20 @@ body::before {
     }
     .hero-media-footer {
       position: absolute;
-      inset-inline: 18px;
-      bottom: 16px;
+      inset-inline: 22px;
+      bottom: 20px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      gap: 16px;
+      gap: 18px;
       color: #f9fafb;
     }
     .media-footer-text {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
     }
     .media-footer-text h3 {
-      margin: 0 0 4px;
-      font-size: 1rem;
+      margin: 0 0 5px;
+      font-size: 1.05rem;
       font-weight: 500;
     }
     .media-footer-text p {
@@ -393,14 +386,14 @@ body::before {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 6px;
-      font-size: 0.74rem;
+      margin-top: 7px;
+      font-size: 0.76rem;
     }
     .tag {
       padding: 5px 9px;
       border-radius: var(--radius-pill);
-      background: rgba(255,255,255,0.9);
-      border: 1px solid rgba(229, 231, 235, 0.9);
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(229, 231, 235, 0.96);
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -415,12 +408,12 @@ body::before {
 
     /* ---------- Section shell ---------- */
     .section {
-      padding: 80px 6%;
+      padding: 90px 6%;
     }
     .section-header {
       width: 100%;
       max-width: var(--max-width);
-      margin: 0 auto 32px;
+      margin: 0 auto 34px;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
@@ -439,62 +432,59 @@ body::before {
     .section-title {
       margin: 0;
       font-family: "Playfair Display", serif;
-      font-size: 1.7rem;
+      font-size: 1.8rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
     .section-subtitle {
       margin-top: 10px;
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
       max-width: 480px;
     }
     .section-cta {
-      font-size: 0.8rem;
+      font-size: 0.84rem;
       color: var(--text-muted);
-      max-width: 340px;
+      max-width: 360px;
     }
 
     /* ---------- Residences ---------- */
     .residences {
-      background: #f8f6f1;
+      background: #f8f5ee;
     }
     .residences-grid {
       width: 100%;
       max-width: var(--max-width);
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.7fr);
-      gap: 22px;
-      align-items: stretch;
     }
 
     .property-card-main {
       border-radius: var(--radius-lg);
       background: var(--card-bg);
       border: 1px solid var(--border-subtle);
-      padding: 22px;
+      padding: 26px 26px 28px;
       box-shadow: var(--shadow-soft);
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.25fr);
+      gap: 26px;
+      align-items: stretch;
     }
-    .property-tag-row {
+
+    .property-header-row {
       display: flex;
       justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 16px;
     }
+
     .pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 6px 11px;
       border-radius: var(--radius-pill);
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.96);
       border: 1px solid var(--border-soft);
       font-size: 0.76rem;
     }
@@ -505,55 +495,41 @@ body::before {
       color: var(--accent-strong);
     }
 
-    .property-title {
-      margin: 0;
-      font-family: "Playfair Display", serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
     .property-location {
       font-size: 0.82rem;
       color: var(--text-muted);
-      margin-top: 4px;
     }
 
-    .property-body {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.4fr);
-      gap: 20px;
-      align-items: start;
+    .property-title {
+      margin: 0 0 4px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    .property-specs-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-bottom: 12px;
+    .property-specs-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
       font-size: 0.8rem;
     }
-    .spec {
-      padding: 8px 10px;
+    .spec-chip {
+      padding: 7px 11px;
       border-radius: 14px;
-      background: rgba(255,255,255,0.95);
+      background: rgba(248, 249, 251, 0.96);
       border: 1px solid var(--border-soft);
     }
-    .spec-label {
-      display: block;
-      color: var(--text-muted);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 3px;
-    }
-    .spec-value {
-      color: var(--text-main);
+    .spec-chip strong {
       font-weight: 500;
+      color: var(--text-main);
     }
 
     .property-copy {
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
+      margin-bottom: 14px;
     }
     .property-copy p {
       margin: 0 0 10px;
@@ -561,8 +537,8 @@ body::before {
     .property-highlights {
       list-style: none;
       padding: 0;
-      margin: 0 0 12px;
-      font-size: 0.8rem;
+      margin: 0 0 16px;
+      font-size: 0.84rem;
       color: var(--text-muted);
       display: grid;
       gap: 6px;
@@ -573,31 +549,38 @@ body::before {
       margin-right: 6px;
     }
 
-    .property-card-media {
+    .property-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .property-media-panel {
       border-radius: var(--radius-md);
       background: var(--card-bg-soft);
       border: 1px solid var(--border-soft);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
     }
     .property-card-media-img {
       position: relative;
-      min-height: 210px;
+      min-height: 260px;
       background-image:
-        linear-gradient(160deg, rgba(0,0,0,0.15), rgba(0,0,0,0.05)),
-        url("https://images.pexels.com/photos/261187/pexels-photo-261187.jpeg?auto=compress&cs=tinysrgb&w=1600");
+        linear-gradient(155deg, rgba(0,0,0,0.22), rgba(0,0,0,0.02)),
+        url("https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1600");
       background-size: cover;
       background-position: center;
     }
     .media-overlay-label {
       position: absolute;
-      left: 12px;
-      bottom: 12px;
-      padding: 6px 10px;
+      left: 16px;
+      bottom: 16px;
+      padding: 6px 11px;
       border-radius: var(--radius-pill);
-      background: rgba(255,255,255,0.92);
+      background: rgba(255,255,255,0.96);
       border: 1px solid var(--border-soft);
       font-size: 0.72rem;
       display: inline-flex;
@@ -606,15 +589,13 @@ body::before {
       color: var(--text-muted);
     }
     .property-card-media-body {
-      padding: 12px 14px 14px;
+      padding: 14px 16px 16px;
       display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
+      flex-direction: column;
+      gap: 10px;
     }
     .property-card-media-copy {
       color: var(--text-muted);
-      max-width: 240px;
     }
     .property-card-media-copy strong {
       color: var(--text-main);
@@ -624,17 +605,17 @@ body::before {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
-      margin-top: 18px;
-      font-size: 0.78rem;
+      margin-top: 16px;
+      font-size: 0.8rem;
     }
     .upcoming-card {
-      border-radius: var(--radius-md);
+      border-radius: 16px;
       padding: 14px 14px 16px;
-      background: var(--card-bg);
+      background: #fdfbf7;
       border: 1px solid var(--border-subtle);
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
     .upcoming-title {
       font-weight: 500;
@@ -650,20 +631,20 @@ body::before {
       color: var(--accent-strong);
     }
     .upcoming-meta {
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
 
     /* ---------- Experience ---------- */
     .experience {
-      background: #f5f3ee;
+      background: #f6f2eb;
     }
     .experience-grid {
       max-width: var(--max-width);
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.8fr);
-      gap: 24px;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.3fr);
+      gap: 26px;
       align-items: start;
     }
 
@@ -680,20 +661,20 @@ body::before {
       margin: 18px 0 0;
       display: grid;
       gap: 10px;
-      font-size: 0.84rem;
+      font-size: 0.86rem;
     }
     .experience-list li {
       padding: 9px 11px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.9);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.96);
       border: 1px solid var(--border-soft);
       display: flex;
       align-items: center;
       gap: 10px;
     }
     .check {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       border: 1px solid var(--accent-strong);
       display: flex;
@@ -701,23 +682,24 @@ body::before {
       justify-content: center;
       font-size: 0.7rem;
       color: var(--accent-strong);
+      flex-shrink: 0;
     }
 
     .experience-cards {
       display: grid;
-      gap: 12px;
+      gap: 14px;
     }
     .experience-card {
-      border-radius: var(--radius-md);
+      border-radius: 20px;
       padding: 16px 16px 18px;
       background: var(--card-bg);
       border: 1px solid var(--border-subtle);
-      font-size: 0.84rem;
+      font-size: 0.86rem;
       box-shadow: var(--shadow-soft);
     }
     .experience-card h3 {
       margin: 0 0 6px;
-      font-size: 0.92rem;
+      font-size: 0.96rem;
       font-weight: 500;
     }
     .experience-card p {
@@ -729,19 +711,19 @@ body::before {
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 9px;
-      font-size: 0.74rem;
+      font-size: 0.76rem;
     }
     .pill-soft {
       padding: 4px 9px;
       border-radius: var(--radius-pill);
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       border: 1px solid var(--border-soft);
       color: var(--text-muted);
     }
 
     /* ---------- About & Contact ---------- */
     .about-contact {
-      background: #f7f5f0;
+      background: #f7f3ec;
     }
     .about-contact-grid {
       max-width: var(--max-width);
@@ -754,17 +736,17 @@ body::before {
 
     .about-card {
       border-radius: var(--radius-lg);
-      padding: 22px 22px 24px;
+      padding: 24px 24px 26px;
       background: var(--card-bg);
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
     }
     .about-card h3 {
       margin: 0 0 10px;
       font-family: "Playfair Display", serif;
-      font-size: 1.1rem;
+      font-size: 1.16rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-main);
@@ -782,7 +764,7 @@ body::before {
     .about-meta-item {
       padding: 8px 10px;
       border-radius: 14px;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.96);
       border: 1px solid var(--border-soft);
     }
     .about-meta-label {
@@ -799,7 +781,7 @@ body::before {
 
     .contact-card {
       border-radius: var(--radius-lg);
-      padding: 22px 22px 26px;
+      padding: 24px 24px 28px;
       background: var(--card-bg);
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
@@ -815,7 +797,7 @@ body::before {
     .contact-card h3 {
       margin: 0;
       font-family: "Playfair Display", serif;
-      font-size: 1.1rem;
+      font-size: 1.12rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-main);
@@ -824,7 +806,7 @@ body::before {
       font-size: 0.72rem;
       padding: 6px 10px;
       border-radius: var(--radius-pill);
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.96);
       border: 1px solid var(--border-soft);
       color: var(--text-muted);
     }
@@ -855,7 +837,7 @@ body::before {
       width: 100%;
       border-radius: 12px;
       border: 1px solid var(--border-soft);
-      background: rgba(255,255,255,0.95);
+      background: rgba(255,255,255,0.98);
       padding: 9px 11px;
       font-size: 0.82rem;
       color: var(--text-main);
@@ -913,16 +895,19 @@ body::before {
     /* ---------- Responsive ---------- */
     @media (max-width: 900px) {
       .hero-grid,
-      .residences-grid,
+      .property-card-main,
       .experience-grid,
       .about-contact-grid {
         grid-template-columns: minmax(0, 1fr);
       }
       .hero {
-        padding-top: 120px;
+        padding-top: 130px;
       }
       .hero-media-card {
         order: -1;
+      }
+      .hero-media-inner {
+        min-height: 320px;
       }
       .section-header {
         flex-direction: column;
@@ -932,21 +917,16 @@ body::before {
         display: none;
       }
     }
+
     @media (max-width: 600px) {
       .hero {
-        padding-top: 112px;
+        padding-top: 118px;
       }
       .hero-title {
-        font-size: 2.2rem;
+        font-size: 2.3rem;
       }
-      .hero-media-inner {
-        min-height: 260px;
-      }
-      .property-body {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .property-specs-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .property-card-main {
+        padding: 20px 18px 22px;
       }
       .upcoming-grid,
       .field-row {
@@ -1078,108 +1058,96 @@ body::before {
         </div>
 
         <div class="residences-grid">
-          <!-- Main Property -->
           <article class="property-card-main">
-            <div class="property-tag-row">
-              <div class="pill">
-                <span class="pill-badge">Flagship</span>
-                <span>Now reserving interest for Winter 2025+</span>
+            <div>
+              <div class="property-header-row">
+                <div class="pill">
+                  <span class="pill-badge">Flagship</span>
+                  <span>Now reserving interest for Winter 2025+</span>
+                </div>
+                <div class="property-location">
+                  Lower Deer Valley · Park City · Utah
+                </div>
               </div>
-              <div>Lower Deer Valley · Park City · Utah</div>
-            </div>
 
-            <header>
               <h3 class="property-title">Pinnacle Ridge Penthouse</h3>
-              <div class="property-location">
-                Walking distance to Deer Valley Resort · Minutes to Park City Main Street
-              </div>
-            </header>
 
-            <div class="property-body">
-              <div>
-                <div class="property-specs-grid">
-                  <div class="spec">
-                    <span class="spec-label">Bedrooms</span>
-                    <span class="spec-value">5</span>
-                  </div>
-                  <div class="spec">
-                    <span class="spec-label">Bathrooms</span>
-                    <span class="spec-value">4 full + 1 half</span>
-                  </div>
-                  <div class="spec">
-                    <span class="spec-label">Guests</span>
-                    <span class="spec-value">Up to 10–12</span>
-                  </div>
+              <div class="property-specs-row">
+                <div class="spec-chip">
+                  <strong>5</strong> Bedrooms
                 </div>
-
-                <div class="property-copy">
-                  <p>
-                    An expansive, fully renovated penthouse designed for multi-generational families
-                    and close friends: warm modern finishes, generous gathering spaces, and layered
-                    lighting that feels as considered as a primary home.
-                  </p>
-                  <ul class="property-highlights">
-                    <li>Open-plan great room with fireplace, mountain views, and balcony</li>
-                    <li>Chef’s kitchen with island seating and family-style dining area</li>
-                    <li>Dedicated bunk / kids’ suite plus separate adult bedroom suites</li>
-                    <li>Steps from Deer Valley access and a short drive to Old Town</li>
-                  </ul>
+                <div class="spec-chip">
+                  <strong>4 full + 1 half</strong> Bathrooms
                 </div>
-
-                <div class="hero-ctas">
-                  <a href="#contact" class="btn btn-primary">
-                    Request Launch Availability
-                    <span class="btn-icon">➝</span>
-                  </a>
-                  <a href="#experience" class="btn btn-outline">
-                    View Guest Experience
-                  </a>
+                <div class="spec-chip">
+                  <strong>Up to 10–12</strong> Guests
                 </div>
               </div>
 
-              <aside class="property-card-media">
-                <div class="property-card-media-img">
-                  <div class="media-overlay-label">
-                    <span class="tag-dot"></span>
-                    Design in progress · Finishes inspired by warm alpine interiors
-                  </div>
-                </div>
-                <div class="property-card-media-body">
-                  <div class="property-card-media-copy">
-                    <strong>Warm, modern-alpine palette</strong><br />
-                    Soft whites, light woods, stone, and bronze accents, chosen to feel timeless
-                    in both winter and summer.
-                  </div>
-                  <div class="pill-soft">
-                    Owner-curated details<br />
-                    <span style="color: var(--text-muted);">From families who also love to travel.</span>
-                  </div>
-                </div>
-              </aside>
-            </div>
-
-            <div class="upcoming-grid">
-              <div class="upcoming-card">
-                <div class="upcoming-title">
-                  <span>Deer Valley East Penthouse</span>
-                  <span class="upcoming-status">In Process</span>
-                </div>
-                <div class="upcoming-meta">
-                  Reservation in progress for a second Deer Valley residence with a complementary layout,
-                  views, and bedroom mix, offering more flexibility for repeat guests.
-                </div>
+              <div class="property-copy">
+                <p>
+                  An expansive, fully renovated penthouse designed for multi-generational families
+                  and close friends: warm modern finishes, generous gathering spaces, and layered
+                  lighting that feels as considered as a primary home.
+                </p>
               </div>
-              <div class="upcoming-card">
-                <div class="upcoming-title">
-                  <span>Future Destinations</span>
-                  <span class="upcoming-status">Evaluating</span>
-                </div>
-                <div class="upcoming-meta">
-                  Select homes in Hawaii, Florida, and other coastal markets are being evaluated to expand
-                  the collection beyond the mountains while maintaining the same design and hospitality standards.
-                </div>
+
+              <ul class="property-highlights">
+                <li>Open-plan great room with fireplace, mountain views, and balcony</li>
+                <li>Chef’s kitchen with island seating and family-style dining area</li>
+                <li>Dedicated bunk / kids’ suite plus separate adult bedroom suites</li>
+                <li>Steps from Deer Valley access and a short drive to Old Town</li>
+              </ul>
+
+              <div class="property-actions">
+                <a href="#contact" class="btn btn-primary">
+                  Request Launch Availability
+                  <span class="btn-icon">➝</span>
+                </a>
+                <a href="#experience" class="btn btn-outline">
+                  View Guest Experience
+                </a>
               </div>
             </div>
+
+            <aside class="property-media-panel">
+              <div class="property-card-media-img">
+                <div class="media-overlay-label">
+                  <span class="tag-dot"></span>
+                  Design in progress · finishes inspired by warm alpine interiors
+                </div>
+              </div>
+              <div class="property-card-media-body">
+                <div class="property-card-media-copy">
+                  <strong>Warm, modern-alpine palette.</strong><br />
+                  Soft whites, light woods, stone, and bronze accents, chosen to feel timeless
+                  in both winter and summer.
+                </div>
+
+                <div class="upcoming-grid">
+                  <div class="upcoming-card">
+                    <div class="upcoming-title">
+                      <span>Deer Valley East Penthouse</span>
+                      <span class="upcoming-status">In process</span>
+                    </div>
+                    <div class="upcoming-meta">
+                      Reservation in progress for a second Deer Valley residence with a complementary layout
+                      and bedroom mix, offering more flexibility for repeat guests.
+                    </div>
+                  </div>
+                  <div class="upcoming-card">
+                    <div class="upcoming-title">
+                      <span>Future Destinations</span>
+                      <span class="upcoming-status">Evaluating</span>
+                    </div>
+                    <div class="upcoming-meta">
+                      Select homes in Hawaii, Florida, and other coastal markets are being evaluated to expand
+                      the collection beyond the mountains while maintaining the same design and hospitality standards.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aside>
           </article>
         </div>
       </section>
@@ -1211,7 +1179,7 @@ body::before {
             <ul class="experience-list">
               <li>
                 <span class="check">✓</span>
-                Pre-arrival planning: groceries, crib / high chair, rentals, restaurant suggestions.
+                Pre-arrival planning: groceries, crib / high chair, rentals, and restaurant suggestions.
               </li>
               <li>
                 <span class="check">✓</span>
@@ -1317,7 +1285,6 @@ body::before {
               suggest options in warm-weather locations such as Hawaii and Florida.
             </p>
 
-            <!-- When you're ready to wire this, set the "action" and "method" attributes -->
             <form class="contact-form" action="#" method="post">
               <div class="field-row">
                 <div class="field-group">
