@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Milk and Honey Homes — Park City</title>
-  <meta name="description" content="Luxury mountain rentals in Park City, Utah. The Milk and Honey Homes." />
-  <meta name="theme-color" content="#0b0b0b" />
+  <meta name="description" content="Luxury rentals in Park City, Utah. The Milk and Honey Homes." />
+  <meta name="theme-color" content="#0b0c0f" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,12 +14,13 @@
 
   <style>
     :root{
-      --text: rgba(255,255,255,.94);
+      --text: rgba(255,255,255,.95);
       --muted: rgba(255,255,255,.78);
-      --line: rgba(255,255,255,.14);
+      --line: rgba(255,255,255,.16);
       --gold: #f3d78f;
       --gold2:#d6b36b;
-      --shadow: 0 22px 80px rgba(0,0,0,.55);
+      --shadow: 0 26px 90px rgba(0,0,0,.40);
+      --glass: rgba(12,14,18,.22);
     }
 
     *{ box-sizing:border-box; }
@@ -27,62 +28,83 @@
     body{
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       color: var(--text);
-      background:#0b0b0b;
+      background:#0b0c0f;
       overflow-x:hidden;
     }
 
-    /* =========================
-       Rotating background images
-       ========================= */
-    .bg{
+    /* =========================================
+       Background slideshow (BRIGHTER + cinematic)
+       ========================================= */
+    .bgWrap{
       position:fixed;
       inset:0;
       z-index:-3;
+      overflow:hidden;
+      background:#0b0c0f;
+    }
+
+    .bgSlide{
+      position:absolute;
+      inset:-3%;
       background-size:cover;
       background-position:center;
       transform: scale(1.06);
-      filter: saturate(1.02) contrast(1.06) brightness(.96);
-      transition: opacity 1400ms ease;
+      opacity:0;
+      transition: opacity 1200ms ease;
+      will-change: opacity, transform, filter;
+      filter:
+        saturate(1.05)
+        contrast(1.02)
+        brightness(1.08);
     }
 
-    /* 3-image crossfade layers */
-    .bg.layerA{ z-index:-3; opacity:1; }
-    .bg.layerB{ z-index:-4; opacity:0; }
+    .bgSlide.isOn{ opacity:1; }
 
-    /* Color grade + vignette (cinematic) */
+    /* subtle drift */
+    .bgSlide.isOn{
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    @keyframes drift{
+      0% { transform: scale(1.06) translate3d(0,0,0); }
+      100%{ transform: scale(1.10) translate3d(-1.2%, -0.6%, 0); }
+    }
+
+    /* =========================================
+       Light grade + vignette (LESS DARK)
+       ========================================= */
     .grade{
       position:fixed;
       inset:0;
       z-index:-2;
       background:
-        radial-gradient(1200px 700px at 18% 12%, rgba(243,215,143,.16), transparent 60%),
-        radial-gradient(1200px 900px at 85% 10%, rgba(90,140,170,.16), transparent 60%),
-        radial-gradient(1200px 900px at 50% 95%, rgba(0,0,0,.10), rgba(0,0,0,.70) 72%),
-        linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.62));
+        radial-gradient(1200px 700px at 18% 18%, rgba(243,215,143,.14), transparent 62%),
+        radial-gradient(1100px 700px at 82% 20%, rgba(120,170,200,.10), transparent 62%),
+        radial-gradient(1200px 900px at 50% 92%, rgba(0,0,0,.06), rgba(0,0,0,.40) 72%),
+        linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.30));
+      pointer-events:none;
     }
 
-    /* Film grain */
+    /* Film grain (soft) */
     .grain{
       position:fixed;
       inset:0;
       z-index:-1;
       pointer-events:none;
-      opacity:.10;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+      opacity:.08;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.40'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
     }
 
-    /* =========================
+    /* =========================================
        Layout
-       ========================= */
+       ========================================= */
     .wrap{
       min-height:100%;
       width:min(1180px, 92vw);
       margin:0 auto;
-      padding: 34px 0 22px;
+      padding: 34px 0 18px;
       display:flex;
       flex-direction:column;
-      gap: 26px;
     }
 
     header{
@@ -92,65 +114,66 @@
       gap: 10px;
     }
 
-    /* =========================
-       OPTION 1: GOLD FOIL LOGO (NO BOX)
-       ========================= */
-    .brandLogo{
-      width: min(320px, 70vw);
-      height:auto;
-      display:block;
-
-      /* “foil” feel */
-      filter:
-        saturate(1.12)
-        contrast(1.10)
-        brightness(1.05)
-        drop-shadow(0 22px 48px rgba(0,0,0,.55))
-        drop-shadow(0 0 22px rgba(243,215,143,.22));
-
-      /* blend into photo */
-      mix-blend-mode: screen;
-      opacity: .98;
+    /* Logo: blended top-left (no "sticker") */
+    .logoRow{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
     }
 
-    /* Small “foil bloom” behind mark (subtle, cinematic) */
-    .logoBloom{
-      position: relative;
-      display: inline-block;
-      padding: 2px 0;
+    .logoShell{
+      position:relative;
+      border-radius: 16px;
+      padding: 10px 12px;
+      background: rgba(10,12,16,.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 70px rgba(0,0,0,.35);
+      overflow:hidden;
     }
-    .logoBloom::after{
+
+    /* feathered edges to blend */
+    .logoShell::before{
       content:"";
       position:absolute;
-      left:-18px;
-      top:50%;
-      width: 340px;
-      height: 160px;
-      transform: translateY(-52%);
-      background: radial-gradient(circle at 30% 40%, rgba(243,215,143,.16), transparent 62%);
-      filter: blur(8px);
-      opacity: .85;
+      inset:-40%;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,.10), transparent 58%),
+        radial-gradient(circle at 70% 45%, rgba(243,215,143,.10), transparent 62%);
+      transform: rotate(6deg);
       pointer-events:none;
-      z-index:-1;
+      opacity:.9;
+    }
+
+    .brandLogo{
+      width: min(260px, 60vw);
+      height:auto;
+      display:block;
+      opacity:.98;
+      /* remove harsh “sticker” feel */
+      filter:
+        drop-shadow(0 12px 22px rgba(0,0,0,.35))
+        drop-shadow(0 0 18px rgba(243,215,143,.08));
     }
 
     .location{
       font-size:12px;
-      letter-spacing:.24em;
+      letter-spacing:.26em;
       text-transform:uppercase;
-      color: rgba(255,255,255,.76);
-      padding-left: 2px;
-      text-shadow: 0 18px 55px rgba(0,0,0,.65);
+      color: rgba(255,255,255,.78);
+      padding-left: 4px;
     }
 
     .hero{
-      flex: 1;
+      flex:1;
       display:flex;
       flex-direction:column;
       justify-content:center;
       gap: 16px;
       max-width: 980px;
-      padding: 6px 0 28px;
+      padding: 10px 0 18px;
+      margin-top: 10px;
     }
 
     .pill{
@@ -159,14 +182,14 @@
       gap:10px;
       padding:10px 14px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(10,10,12,.22);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(12,14,18,.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       color: rgba(255,255,255,.84);
       font-size:13px;
       width: fit-content;
-      text-shadow: 0 18px 55px rgba(0,0,0,.65);
+      box-shadow: 0 18px 70px rgba(0,0,0,.28);
     }
     .dot{
       width:8px;height:8px;border-radius:50%;
@@ -177,11 +200,12 @@
     h1{
       font-family: Fraunces, serif;
       font-weight:300;
-      font-size: clamp(46px, 5.8vw, 88px);
+      font-size: clamp(46px, 5.7vw, 88px);
       line-height: 1.02;
       margin:0;
-      text-shadow: 0 28px 90px rgba(0,0,0,.62);
+      text-shadow: 0 26px 80px rgba(0,0,0,.42);
     }
+
     .accent{
       background: linear-gradient(90deg, var(--gold), var(--gold2));
       -webkit-background-clip:text;
@@ -189,13 +213,26 @@
       color:transparent;
     }
 
+    /* subtle “editorial” backing glass for text */
+    .copyGlass{
+      width: fit-content;
+      max-width: min(980px, 92vw);
+      padding: 18px 18px 14px;
+      border-radius: 18px;
+      background: rgba(10,12,16,.16);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 22px 90px rgba(0,0,0,.28);
+    }
+
     .subhead{
       max-width: 72ch;
       font-size: 16px;
       line-height: 1.75;
       color: var(--muted);
-      margin: 0;
-      text-shadow: 0 22px 70px rgba(0,0,0,.68);
+      margin: 10px 0 0;
+      text-shadow: 0 18px 60px rgba(0,0,0,.35);
     }
 
     .rule{
@@ -203,36 +240,45 @@
       height: 1px;
       background: linear-gradient(90deg, rgba(243,215,143,0), rgba(243,215,143,.35), rgba(243,215,143,0));
       opacity: .55;
-      margin-top: 8px;
+      margin-top: 14px;
     }
 
     footer{
       text-align:center;
       font-size:12.5px;
-      color: rgba(255,255,255,.62);
+      color: rgba(255,255,255,.68);
       padding-top: 10px;
-      text-shadow: 0 20px 60px rgba(0,0,0,.70);
+      text-shadow: 0 18px 60px rgba(0,0,0,.35);
     }
 
     @media (max-width: 860px){
-      .wrap{ padding-top: 22px; gap: 18px; }
-      .brandLogo{ width: min(300px, 76vw); }
-      .logoBloom::after{ width: 300px; height: 140px; }
+      .wrap{ padding-top: 22px; }
+      .brandLogo{ width: min(240px, 70vw); }
+      .copyGlass{ padding: 16px 14px 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .bgSlide.isOn{ animation:none; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Background crossfade layers -->
-  <div class="bg layerA" id="bgA"></div>
-  <div class="bg layerB" id="bgB"></div>
-  <div class="grade"></div>
-  <div class="grain"></div>
+  <!-- Background slideshow -->
+  <div class="bgWrap" aria-hidden="true">
+    <div class="bgSlide" id="bg1"></div>
+    <div class="bgSlide" id="bg2"></div>
+    <div class="bgSlide" id="bg3"></div>
+  </div>
+  <div class="grade" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
   <main class="wrap">
     <header>
-      <div class="logoBloom">
-        <img class="brandLogo" src="./assets/milk-honey-logo.png" alt="The Milk and Honey Homes">
+      <div class="logoRow">
+        <div class="logoShell">
+          <img class="brandLogo" src="./assets/milk-honey-logo.png" alt="The Milk and Honey Homes">
+        </div>
       </div>
       <div class="location">PARK CITY, UTAH</div>
     </header>
@@ -243,18 +289,20 @@
         <span>Luxury Rentals • Curated Homes</span>
       </div>
 
-      <h1>
-        A sweeter way to <span class="accent">stay</span>.<br>
-        Homes flowing with <span class="accent">comfort</span>.
-      </h1>
+      <div class="copyGlass">
+        <h1>
+          A sweeter way to <span class="accent">stay</span>.<br>
+          Homes flowing with <span class="accent">comfort</span>.
+        </h1>
 
-      <p class="subhead">
-        <strong>The Milk and Honey Homes</strong> is building a refined collection of luxury mountain rentals —
-        thoughtfully designed spaces for elevated living.
-        <em>Coming soon.</em>
-      </p>
+        <p class="subhead">
+          <strong>The Milk and Honey Homes</strong> is building a refined collection of luxury mountain rentals —
+          thoughtfully designed spaces for elevated living.
+          <em>Coming soon.</em>
+        </p>
 
-      <div class="rule"></div>
+        <div class="rule"></div>
+      </div>
     </section>
 
     <footer>
@@ -263,49 +311,49 @@
   </main>
 
   <script>
-    // footer year
+    // Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // ✅ Update these to match the exact filenames you uploaded
-    const IMAGES = [
+    // Slideshow images (your repo files)
+    const images = [
       "./assets/park-city-1.png",
       "./assets/park-city-2.png",
       "./assets/park-city-3.png"
     ];
 
-    // Crossfade background
-    const bgA = document.getElementById("bgA");
-    const bgB = document.getElementById("bgB");
-    let showingA = true;
+    // Speed controls (edit these)
+    const ROTATE_MS = 6000; // 6s each image (make smaller = faster)
+    const FADE_MS = 1200;   // matches CSS transition
+
+    const slides = [
+      document.getElementById("bg1"),
+      document.getElementById("bg2"),
+      document.getElementById("bg3")
+    ];
+
+    // Preload
+    images.forEach(src => { const i = new Image(); i.src = src; });
+
     let idx = 0;
+    let active = 0;
 
-    function setBg(el, url){
-      el.style.backgroundImage = `url("${url}")`;
-    }
-
-    // preload images
-    IMAGES.forEach(src => { const i = new Image(); i.src = src; });
-
-    setBg(bgA, IMAGES[0]);
-    setBg(bgB, IMAGES[1]);
-
-    // speed: change every 7 seconds (adjust if you want faster)
-    const ROTATE_MS = 7000;
+    // init
+    slides[0].style.backgroundImage = `url("${images[0]}")`;
+    slides[0].classList.add("isOn");
 
     setInterval(() => {
-      idx = (idx + 1) % IMAGES.length;
-      const next = IMAGES[idx];
+      const next = (active + 1) % slides.length;
+      idx = (idx + 1) % images.length;
 
-      if (showingA){
-        setBg(bgB, next);
-        bgB.style.opacity = 1;
-        bgA.style.opacity = 0;
-      } else {
-        setBg(bgA, next);
-        bgA.style.opacity = 1;
-        bgB.style.opacity = 0;
-      }
-      showingA = !showingA;
+      slides[next].style.backgroundImage = `url("${images[idx]}")`;
+      slides[next].classList.add("isOn");
+
+      // fade out current after next is visible
+      setTimeout(() => {
+        slides[active].classList.remove("isOn");
+        active = next;
+      }, 50);
+
     }, ROTATE_MS);
   </script>
 </body>
