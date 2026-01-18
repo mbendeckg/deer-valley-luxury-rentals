@@ -3,14 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>The Milk and Honey Homes — Park City — Coming Soon</title>
-  <meta name="description" content="The Milk and Honey Homes — Luxury Rentals in Park City, Utah. Coming soon." />
-  <meta name="theme-color" content="#07070a" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="The Milk and Honey Homes — Park City — Coming Soon" />
-  <meta property="og:description" content="Luxury Rentals in Park City, Utah. Coming soon." />
-  <meta property="og:type" content="website" />
+  <title>The Milk and Honey Homes — Park City</title>
+  <meta name="description" content="Luxury rentals in Park City, Utah. The Milk and Honey Homes." />
+  <meta name="theme-color" content="#0b0b0b" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,115 +15,86 @@
   <style>
     :root{
       --text: rgba(255,255,255,.94);
-      --muted: rgba(255,255,255,.76);
-      --line: rgba(255,255,255,.14);
-
-      --gold:  #f3d78f;
-      --gold2: #d6b36b;
-
-      --shadow: 0 26px 80px rgba(0,0,0,.60);
+      --muted: rgba(255,255,255,.72);
+      --gold: #f3d78f;
+      --gold2:#d6b36b;
     }
 
     *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    html,body{ height:100%; margin:0; }
 
     body{
-      margin:0;
-      color:var(--text);
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background:#07070a;
-      overflow-x:hidden;
+      color: var(--text);
+      background:#000;
     }
 
-    /* =========================
-       Cinematic Background System
-       ========================= */
-    .bg{
+    /* ======================
+       HERO BACKGROUND IMAGE
+       ====================== */
+    .hero-bg{
       position:fixed;
       inset:0;
-      z-index:-5;
-      overflow:hidden;
-      background:#07070a;
-    }
-
-    .bgSlide{
-      position:absolute;
-      inset:-2%;
+      z-index:-2;
+      background-image:
+        url("https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=2400&auto=format&fit=crop");
       background-size:cover;
       background-position:center;
-      filter: saturate(1.03) contrast(1.07) brightness(.78);
-      transform: scale(1.06);
-      opacity:0;
-      transition: opacity 1400ms ease;
-      will-change: opacity;
+      transform: scale(1.08);
+      filter: contrast(1.05) saturate(0.95);
     }
-    .bgSlide.isActive{ opacity:1; }
 
-    /* A cold alpine “air” pass (Park City) */
-    .alpine{
-      position:absolute;
+    /* Cinematic overlays */
+    .overlay{
+      position:fixed;
       inset:0;
-      z-index:2;
-      pointer-events:none;
+      z-index:-1;
       background:
-        radial-gradient(1200px 900px at 18% 20%, rgba(160,195,255,.12), transparent 62%),
-        radial-gradient(1100px 900px at 85% 18%, rgba(120,170,255,.10), transparent 62%),
-        linear-gradient(to bottom, rgba(0,0,0,.38), rgba(0,0,0,.70) 62%, rgba(0,0,0,.82));
+        radial-gradient(1000px 600px at 30% 20%, rgba(243,215,143,.18), transparent 60%),
+        linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.82));
     }
 
-    /* Warm “interior glow” (luxury comfort) */
-    .warmth{
-      position:absolute;
-      inset:0;
-      z-index:3;
-      pointer-events:none;
-      background:
-        radial-gradient(820px 540px at 26% 22%, rgba(243,215,143,.22), transparent 62%),
-        radial-gradient(820px 540px at 78% 30%, rgba(214,179,107,.14), transparent 65%);
-      mix-blend-mode: screen;
-      opacity:.55;
-    }
-
-    /* Vignette for cinema framing */
-    .vignette{
-      position:absolute;
-      inset:-1px;
-      z-index:4;
-      pointer-events:none;
-      background:
-        radial-gradient(1200px 860px at 50% 18%, rgba(0,0,0,0), rgba(0,0,0,.58) 70%),
-        radial-gradient(1200px 900px at 50% 95%, rgba(0,0,0,0), rgba(0,0,0,.88) 78%);
-    }
-
-    /* Fine film grain */
+    /* Film grain */
     .grain{
-      position:absolute;
+      position:fixed;
       inset:0;
-      z-index:5;
       pointer-events:none;
-      opacity:.10;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.36'/%3E%3C/svg%3E");
+      opacity:.12;
+      background-image:url("https://grainy-gradients.vercel.app/noise.svg");
       mix-blend-mode: overlay;
-      animation: grainShift 9s steps(2) infinite;
-    }
-    @keyframes grainShift{
-      0%{ transform: translate3d(0,0,0); }
-      25%{ transform: translate3d(-1.2%,1.0%,0); }
-      50%{ transform: translate3d(-0.6%,-1.1%,0); }
-      75%{ transform: translate3d(1.0%,0.7%,0); }
-      100%{ transform: translate3d(0,0,0); }
     }
 
-    /* =========================
-       Layout / Typography
-       ========================= */
+    /* Layout */
     .wrap{
       min-height:100%;
       width:min(1120px, 92vw);
       margin:0 auto;
-      padding: 34px 0 16px;
+      padding:42px 0 20px;
       display:flex;
       flex-direction:column;
+    }
+
+    /* Logo */
+    .logo{
+      max-width:460px;
+      background: rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:16px 18px;
+      backdrop-filter: blur(10px);
+    }
+    .logo img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    .location{
+      margin-top:10px;
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.7);
     }
 
     .hero{
@@ -136,71 +102,33 @@
       display:flex;
       flex-direction:column;
       justify-content:center;
-      gap:22px;
-      padding: 54px 6px 54px;
-      max-width: 980px;
-    }
-
-    /* Logo treated as a mark (prevents banner stretching) */
-    .brandFrame{
-      width: min(520px, 78vw);
-      height: 104px;
-      display:flex;
-      align-items:center;
-      justify-content:flex-start;
-      margin-bottom: 6px;
-      filter: drop-shadow(0 18px 42px rgba(0,0,0,.70));
-    }
-    .brandLogo{
-      height: 100%;
-      width: 100%;
-      object-fit: contain;
-      object-position: left center;
-      display:block;
-      opacity:0;
-      transform: translateY(10px);
-      animation: riseIn .9s ease-out .10s forwards;
+      gap:18px;
+      max-width:900px;
     }
 
     .pill{
       display:inline-flex;
-      gap:10px;
       align-items:center;
+      gap:10px;
       padding:10px 14px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(0,0,0,.24);
-      color: rgba(255,255,255,.82);
+      background:rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.15);
       font-size:13px;
-      letter-spacing:.02em;
-      width: fit-content;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 12px 38px rgba(0,0,0,.32);
-      opacity:0;
-      transform: translateY(10px);
-      animation: riseIn .9s ease-out .18s forwards;
     }
 
     .dot{
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background: var(--gold);
-      box-shadow:0 0 0 6px rgba(243,215,143,.10);
+      width:8px;height:8px;border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 0 6px rgba(243,215,143,.18);
     }
 
-    .headline{
+    h1{
       font-family: Fraunces, serif;
       font-weight:300;
-      font-size: clamp(40px, 5.2vw, 78px);
+      font-size:clamp(44px, 5.6vw, 84px);
       line-height:1.05;
       margin:0;
-      letter-spacing: -0.01em;
-      text-shadow: 0 18px 60px rgba(0,0,0,.55);
-      opacity:0;
-      transform: translateY(12px);
-      animation: riseIn 1s ease-out .26s forwards;
     }
 
     .accent{
@@ -211,190 +139,64 @@
     }
 
     .subhead{
-      max-width:74ch;
-      color: rgba(255,255,255,.78);
+      max-width:70ch;
       font-size:16px;
       line-height:1.7;
-      margin:0;
-      text-shadow: 0 18px 60px rgba(0,0,0,.55);
-      opacity:0;
-      transform: translateY(12px);
-      animation: riseIn 1s ease-out .36s forwards;
-    }
-    .subhead strong{ color: rgba(255,255,255,.92); font-weight:500; }
-    .subhead em{ color: rgba(243,215,143,.92); font-style: normal; }
-
-    .location{
-      font-size:13px;
-      color: rgba(255,255,255,.72);
-      letter-spacing:.14em;
-      text-transform: uppercase;
-      margin-top: 2px;
-      opacity:0;
-      transform: translateY(10px);
-      animation: riseIn .9s ease-out .22s forwards;
+      color:var(--muted);
     }
 
-    .fineLine{
-      width: min(520px, 78vw);
-      height:1px;
-      background: linear-gradient(90deg, rgba(243,215,143,.48), rgba(255,255,255,.10));
-      border-radius:999px;
-      opacity:.55;
-      margin-top: 10px;
-    }
-
-    .footer{
+    footer{
       text-align:center;
-      font-size:12.5px;
-      color: rgba(255,255,255,.58);
-      padding: 14px 0 10px;
-      text-shadow: 0 18px 60px rgba(0,0,0,.55);
-    }
-
-    @keyframes riseIn{
-      to{ opacity:1; transform: translateY(0); }
-    }
-
-    @media (max-width: 860px){
-      .wrap{ padding-top: 22px; }
-      .hero{ padding: 40px 4px 44px; gap:18px; }
-      .brandFrame{ height: 82px; }
-      .headline{ font-size: clamp(34px, 8vw, 54px); }
-      .subhead{ font-size: 15px; }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .grain{ animation:none; }
-      .brandLogo,.pill,.headline,.subhead,.location{ animation:none; opacity:1; transform:none; }
-      .bgSlide{ transition:none; }
+      font-size:12px;
+      color:rgba(255,255,255,.6);
+      padding-top:20px;
     }
   </style>
 </head>
 
 <body>
-  <div class="bg" aria-hidden="true">
-    <div id="bgA" class="bgSlide isActive"></div>
-    <div id="bgB" class="bgSlide"></div>
 
-    <div class="alpine"></div>
-    <div class="warmth"></div>
-    <div class="vignette"></div>
-    <div class="grain"></div>
-  </div>
+  <!-- Background layers -->
+  <div class="hero-bg"></div>
+  <div class="overlay"></div>
+  <div class="grain"></div>
 
   <main class="wrap">
-    <section class="hero">
-      <div class="brandFrame">
-        <img src="./assets/milk-honey-logo.png" class="brandLogo" alt="The Milk and Honey Homes">
+
+    <header>
+      <div class="logo">
+        <img src="./assets/milk-honey-logo.png" alt="The Milk and Honey Homes">
       </div>
-
       <div class="location">PARK CITY, UTAH</div>
+    </header>
 
+    <section class="hero">
       <div class="pill">
         <span class="dot"></span>
         <span>Luxury Rentals • Curated Homes</span>
       </div>
 
-      <h1 class="headline">
+      <h1>
         A sweeter way to <span class="accent">stay</span>.<br>
         Homes flowing with <span class="accent">comfort</span>.
       </h1>
 
       <p class="subhead">
         <strong>The Milk and Honey Homes</strong> is building a refined collection of luxury rentals —
-        thoughtfully designed spaces for elevated living. <em>Coming soon.</em>
+        thoughtfully designed spaces for elevated living in the mountains.
+        <em>Coming soon.</em>
       </p>
-
-      <div class="fineLine"></div>
     </section>
 
-    <footer class="footer">
+    <footer>
       © <span id="year"></span> The Milk and Honey Homes. All rights reserved.
     </footer>
+
   </main>
 
   <script>
-    // Year
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // =========================
-    // Background Image Engine
-    // =========================
-
-    // 1) Park City nature/mountain backgrounds (use these first)
-    const NATURE_LIST = [
-      "./assets/backgrounds/parkcity-01.jpg",
-      "./assets/backgrounds/parkcity-02.jpg",
-      "./assets/backgrounds/parkcity-03.jpg",
-    ];
-
-    // 2) Property photos (optional, later)
-    // If you upload these, you can set USE_PROPERTY_PHOTOS = true below.
-    const PROPERTY_LIST = [
-      "./assets/photos/01.jpg",
-      "./assets/photos/02.jpg",
-      "./assets/photos/03.jpg",
-    ];
-
-    // Choose what to run:
-    // - false = nature only (recommended until property photos are curated)
-    // - true  = mix in property photos (still cinematic/dark)
-    const USE_PROPERTY_PHOTOS = false;
-
-    const bgA = document.getElementById("bgA");
-    const bgB = document.getElementById("bgB");
-
-    const preload = (src) => new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => resolve(true);
-      img.onerror = () => resolve(false);
-      img.src = src;
-    });
-
-    (async () => {
-      // Build the final playlist
-      const desired = USE_PROPERTY_PHOTOS ? [...NATURE_LIST, ...PROPERTY_LIST] : [...NATURE_LIST];
-
-      // Keep only images that actually load (prevents “black” if filenames don’t match)
-      const ok = [];
-      for (const src of desired) {
-        const loaded = await preload(src);
-        if (loaded) ok.push(src);
-      }
-
-      // If nothing loads, stay cinematic-dark
-      if (!ok.length) {
-        bgA.style.backgroundImage =
-          "radial-gradient(1200px 900px at 18% 20%, rgba(160,195,255,.10), transparent 62%)," +
-          "radial-gradient(820px 540px at 26% 22%, rgba(243,215,143,.18), transparent 62%)," +
-          "linear-gradient(to bottom, #050507, #0b0b12 60%, #050507)";
-        bgA.classList.add("isActive");
-        return;
-      }
-
-      // First image
-      let i = 0;
-      let activeIsA = true;
-      bgA.style.backgroundImage = `url('${ok[0]}')`;
-
-      // Slow luxury fade
-      const INTERVAL_MS = 12000;
-
-      setInterval(() => {
-        i = (i + 1) % ok.length;
-        const next = ok[i];
-
-        const show = activeIsA ? bgB : bgA;
-        const hide = activeIsA ? bgA : bgB;
-
-        show.style.backgroundImage = `url('${next}')`;
-        show.classList.add("isActive");
-        hide.classList.remove("isActive");
-
-        activeIsA = !activeIsA;
-      }, INTERVAL_MS);
-    })();
   </script>
+
 </body>
 </html>
