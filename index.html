@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Milk and Honey Homes — Park City</title>
   <meta name="description" content="Luxury rentals in Park City, Utah. The Milk and Honey Homes." />
-  <meta name="theme-color" content="#07070a" />
+  <meta name="theme-color" content="#0b0b0b" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,11 +15,10 @@
   <style>
     :root{
       --text: rgba(255,255,255,.94);
-      --muted: rgba(255,255,255,.74);
-      --line: rgba(255,255,255,.14);
+      --muted: rgba(255,255,255,.76);
+      --line: rgba(255,255,255,.16);
       --gold: #f3d78f;
       --gold2:#d6b36b;
-      --shadow: 0 22px 80px rgba(0,0,0,.55);
     }
 
     *{ box-sizing:border-box; }
@@ -27,57 +26,35 @@
     body{
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       color: var(--text);
-      background:#07070a;
+      background:#0b0b0b;
       overflow-x:hidden;
     }
 
     /* =========================
        Cinematic rotating hero bg
-       Uses your 3 uploaded images:
-       /assets/park-city-1.png
-       /assets/park-city-2.png
-       /assets/park-city-3.png
        ========================= */
-
     .bg{
       position:fixed;
       inset:0;
       z-index:-3;
       background-size:cover;
       background-position:center;
-      transform: scale(1.08);
-      filter: saturate(.95) contrast(1.08) brightness(.92);
-      transition: opacity 1.4s ease;
+      transform: scale(1.06);
+      filter: saturate(.98) contrast(1.06) brightness(.92);
+      transition: opacity 900ms ease, filter 900ms ease;
+      opacity: 1;
     }
 
-    /* Drift (slow cinematic movement) */
-    .bg::after{
-      content:"";
-      position:absolute;
-      inset:-8%;
-      background: inherit;
-      background-size:cover;
-      background-position:center;
-      opacity: .55;
-      transform: scale(1.12);
-      filter: blur(10px);
-      animation: drift 24s ease-in-out infinite alternate;
-    }
-    @keyframes drift{
-      0%{ transform: scale(1.12) translate3d(0,0,0); }
-      100%{ transform: scale(1.16) translate3d(-1.4%, -1.1%, 0); }
-    }
-
-    /* Lighter grade (lets photos show) */
+    /* Light editorial grade (so mountains show) */
     .grade{
       position:fixed;
       inset:0;
       z-index:-2;
       pointer-events:none;
       background:
-        radial-gradient(1200px 700px at 30% 20%, rgba(243,215,143,.22), transparent 60%),
-        radial-gradient(1200px 700px at 80% 30%, rgba(140,180,210,.18), transparent 60%),
-        linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.65));
+        radial-gradient(1200px 700px at 30% 20%, rgba(243,215,143,.12), transparent 60%),
+        radial-gradient(1200px 700px at 80% 30%, rgba(140,180,210,.14), transparent 60%),
+        linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.52));
     }
 
     /* Film grain */
@@ -98,10 +75,10 @@
       min-height:100%;
       width:min(1160px, 92vw);
       margin:0 auto;
-      padding: 46px 0 22px;
+      padding: 52px 0 26px;
       display:flex;
       flex-direction:column;
-      gap: 28px;
+      gap: 26px;
     }
 
     header{
@@ -111,27 +88,20 @@
       gap: 10px;
     }
 
-    /* Logo: cinematic blend (no card) */
+    /* Logo: FLOATING (no card, no sticker) */
     .brandLogo{
-      width: min(620px, 88vw);
+      width: min(520px, 82vw);
       height:auto;
       display:block;
       opacity: 0;
-      animation: logoFade 2.8s ease forwards;
-      animation-delay: .6s;
-      filter:
-        drop-shadow(0 40px 120px rgba(0,0,0,.85))
-        drop-shadow(0 0 28px rgba(243,215,143,.18));
+      animation: logoFade 2.4s ease forwards;
+      animation-delay: .35s;
+      filter: drop-shadow(0 18px 60px rgba(0,0,0,.65));
     }
+
     @keyframes logoFade{
-      from{
-        opacity:0;
-        transform: translateY(12px) scale(.98);
-      }
-      to{
-        opacity:1;
-        transform: translateY(0) scale(1);
-      }
+      from{ opacity:0; transform: translateY(10px); }
+      to{ opacity:1; transform: translateY(0); }
     }
 
     .location{
@@ -139,8 +109,8 @@
       letter-spacing:.24em;
       text-transform:uppercase;
       color: rgba(255,255,255,.78);
-      padding-left: 4px;
-      text-shadow: 0 18px 60px rgba(0,0,0,.75);
+      padding-left: 2px;
+      text-shadow: 0 22px 60px rgba(0,0,0,.55);
     }
 
     .hero{
@@ -148,9 +118,9 @@
       display:flex;
       flex-direction:column;
       justify-content:center;
-      gap: 18px;
+      gap: 16px;
       max-width: 980px;
-      padding: 8px 0 30px;
+      padding: 12px 0 34px;
     }
 
     .pill{
@@ -159,29 +129,31 @@
       gap:10px;
       padding:10px 14px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(10,10,12,.20);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(12,12,14,.22);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       color: rgba(255,255,255,.84);
       font-size:13px;
       width: fit-content;
-      box-shadow: 0 18px 70px rgba(0,0,0,.40);
+      box-shadow: 0 18px 60px rgba(0,0,0,.28);
     }
+
     .dot{
       width:8px;height:8px;border-radius:50%;
-      background: var(--gold);
-      box-shadow: 0 0 0 6px rgba(243,215,143,.16);
+      background: linear-gradient(180deg, var(--gold), var(--gold2));
+      box-shadow: 0 0 0 6px rgba(243,215,143,.14);
     }
 
     h1{
       font-family: Fraunces, serif;
       font-weight:300;
-      font-size: clamp(46px, 5.8vw, 88px);
+      font-size: clamp(46px, 5.8vw, 90px);
       line-height: 1.02;
       margin:0;
-      text-shadow: 0 28px 110px rgba(0,0,0,.70);
+      text-shadow: 0 26px 110px rgba(0,0,0,.55);
     }
+
     .accent{
       background: linear-gradient(90deg, var(--gold), var(--gold2));
       -webkit-background-clip:text;
@@ -190,18 +162,18 @@
     }
 
     .subhead{
-      max-width: 72ch;
+      max-width: 74ch;
       font-size: 16px;
       line-height: 1.75;
       color: var(--muted);
       margin: 0;
-      text-shadow: 0 22px 80px rgba(0,0,0,.75);
+      text-shadow: 0 22px 70px rgba(0,0,0,.55);
     }
 
     .rule{
       width: min(560px, 86vw);
       height: 1px;
-      background: linear-gradient(90deg, rgba(243,215,143,0), rgba(243,215,143,.35), rgba(243,215,143,0));
+      background: linear-gradient(90deg, rgba(243,215,143,0), rgba(243,215,143,.38), rgba(243,215,143,0));
       opacity: .55;
       margin-top: 10px;
     }
@@ -209,25 +181,34 @@
     footer{
       text-align:center;
       font-size:12.5px;
-      color: rgba(255,255,255,.66);
+      color: rgba(255,255,255,.64);
       padding-top: 10px;
-      text-shadow: 0 20px 70px rgba(0,0,0,.80);
+      text-shadow: 0 20px 60px rgba(0,0,0,.65);
     }
 
+    /* Smaller screens */
     @media (max-width: 860px){
-      .wrap{ padding-top: 28px; gap: 18px; }
-      .brandLogo{ width: min(560px, 92vw); }
+      .wrap{ padding-top: 34px; gap: 18px; }
+      .hero{ padding-bottom: 26px; }
+      .brandLogo{ width: min(560px, 88vw); }
+    }
+
+    /* Respect accessibility */
+    @media (prefers-reduced-motion: reduce){
+      .brandLogo{ animation: none; opacity: 1; transform: none; }
+      .bg{ transition: none; }
     }
   </style>
 </head>
 
 <body>
-  <div class="bg" id="bg"></div>
+  <div id="bg" class="bg"></div>
   <div class="grade"></div>
   <div class="grain"></div>
 
   <main class="wrap">
     <header>
+      <!-- IMPORTANT: your repo shows this exists: /assets/milk-honey-logo.png -->
       <img class="brandLogo" src="./assets/milk-honey-logo.png" alt="The Milk and Honey Homes">
       <div class="location">PARK CITY, UTAH</div>
     </header>
@@ -244,8 +225,8 @@
       </h1>
 
       <p class="subhead">
-        <strong>The Milk and Honey Homes</strong> is building a refined collection of luxury rentals —
-        thoughtfully designed spaces for elevated living in the mountains.
+        <strong>The Milk and Honey Homes</strong> is building a refined collection of luxury mountain rentals —
+        thoughtfully designed spaces for elevated living.
         <em>Coming soon.</em>
       </p>
 
@@ -258,41 +239,46 @@
   </main>
 
   <script>
-    // Footer year
+    // Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Background rotator (uses your uploaded images)
+    // ✅ Your uploaded files (per your screenshot):
+    // /assets/park-city-1.png
+    // /assets/park-city-2.png
+    // /assets/park-city-3.png
+    //
+    // Recommended order:
+    // 1) destination landscape
+    // 2) nature/atmosphere
+    // 3) property reveal
     const images = [
       "./assets/park-city-1.png",
-      "./assets/park-city-2.png",
-      "./assets/park-city-3.png"
+      "./assets/park-city-3.png",
+      "./assets/park-city-2.png"
     ];
 
     const bg = document.getElementById("bg");
     let i = 0;
 
-    function setBg(idx) {
-      bg.style.opacity = "0";
+    // Preload so transitions are smooth
+    images.forEach((src) => { const img = new Image(); img.src = src; });
+
+    function setBg(idx){
+      bg.style.opacity = 0;
       setTimeout(() => {
         bg.style.backgroundImage = `url("${images[idx]}")`;
-        bg.style.opacity = "1";
-      }, 700);
+        bg.style.opacity = 1;
+      }, 420);
     }
 
-    // Preload images
-    images.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
-
-    // Start
+    // Init
     setBg(i);
 
-    // Rotate every 8 seconds
+    // Rotate every 12s (luxury pace)
     setInterval(() => {
       i = (i + 1) % images.length;
       setBg(i);
-    }, 8000);
+    }, 12000);
   </script>
 </body>
 </html>
