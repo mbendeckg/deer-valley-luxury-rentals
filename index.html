@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>The Milk and Honey Homes — Coming Soon</title>
-  <meta name="description" content="The Milk and Honey Homes — Luxury Rentals. Coming soon." />
+  <title>The Milk and Honey Homes — Park City — Coming Soon</title>
+  <meta name="description" content="The Milk and Honey Homes — Luxury Rentals in Park City, Utah. Coming soon." />
   <meta name="theme-color" content="#07070a" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="The Milk and Honey Homes — Coming Soon" />
-  <meta property="og:description" content="Luxury Rentals. Coming soon." />
+  <meta property="og:title" content="The Milk and Honey Homes — Park City — Coming Soon" />
+  <meta property="og:description" content="Luxury Rentals in Park City, Utah. Coming soon." />
   <meta property="og:type" content="website" />
 
   <!-- Fonts -->
@@ -19,14 +19,14 @@
 
   <style>
     :root{
-      --bg0:#050506;
-      --bg1:#07070a;
-      --bg2:#0b0b12;
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
+      --text: rgba(255,255,255,.94);
+      --muted: rgba(255,255,255,.76);
       --line: rgba(255,255,255,.14);
-      --gold: #f3d78f;
-      --gold2:#d6b36b;
+
+      --gold:  #f3d78f;
+      --gold2: #d6b36b;
+
+      --shadow: 0 26px 80px rgba(0,0,0,.60);
     }
 
     *{ box-sizing:border-box; }
@@ -36,78 +36,97 @@
       margin:0;
       color:var(--text);
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:#07070a;
       overflow-x:hidden;
-      background: var(--bg1);
     }
 
-    /* ===================== */
-    /* Cinematic Background  */
-    /* ===================== */
+    /* =========================
+       Cinematic Background System
+       ========================= */
     .bg{
       position:fixed;
       inset:0;
-      z-index:-2;
-      pointer-events:none;
-      background:
-        radial-gradient(1200px 900px at 18% 14%, rgba(243,215,143,.16), transparent 62%),
-        radial-gradient(1000px 800px at 86% 22%, rgba(214,179,107,.12), transparent 66%),
-        radial-gradient(1400px 1000px at 52% 102%, rgba(255,255,255,.06), transparent 72%),
-        linear-gradient(to bottom, var(--bg0), var(--bg2) 55%, var(--bg0));
-      transform: translateZ(0);
+      z-index:-5;
+      overflow:hidden;
+      background:#07070a;
     }
 
+    .bgSlide{
+      position:absolute;
+      inset:-2%;
+      background-size:cover;
+      background-position:center;
+      filter: saturate(1.03) contrast(1.07) brightness(.78);
+      transform: scale(1.06);
+      opacity:0;
+      transition: opacity 1400ms ease;
+      will-change: opacity;
+    }
+    .bgSlide.isActive{ opacity:1; }
+
+    /* A cold alpine “air” pass (Park City) */
+    .alpine{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      pointer-events:none;
+      background:
+        radial-gradient(1200px 900px at 18% 20%, rgba(160,195,255,.12), transparent 62%),
+        radial-gradient(1100px 900px at 85% 18%, rgba(120,170,255,.10), transparent 62%),
+        linear-gradient(to bottom, rgba(0,0,0,.38), rgba(0,0,0,.70) 62%, rgba(0,0,0,.82));
+    }
+
+    /* Warm “interior glow” (luxury comfort) */
+    .warmth{
+      position:absolute;
+      inset:0;
+      z-index:3;
+      pointer-events:none;
+      background:
+        radial-gradient(820px 540px at 26% 22%, rgba(243,215,143,.22), transparent 62%),
+        radial-gradient(820px 540px at 78% 30%, rgba(214,179,107,.14), transparent 65%);
+      mix-blend-mode: screen;
+      opacity:.55;
+    }
+
+    /* Vignette for cinema framing */
     .vignette{
       position:absolute;
       inset:-1px;
+      z-index:4;
+      pointer-events:none;
       background:
-        radial-gradient(1200px 820px at 50% 18%, rgba(0,0,0,0), rgba(0,0,0,.60) 70%),
-        radial-gradient(1200px 900px at 50% 95%, rgba(0,0,0,0), rgba(0,0,0,.86) 78%);
-      z-index:-1;
+        radial-gradient(1200px 860px at 50% 18%, rgba(0,0,0,0), rgba(0,0,0,.58) 70%),
+        radial-gradient(1200px 900px at 50% 95%, rgba(0,0,0,0), rgba(0,0,0,.88) 78%);
     }
 
-    /* Subtle diagonal “editorial” lighting */
-    .lightSweep{
-      position:absolute;
-      inset:-40%;
-      background: linear-gradient(
-        115deg,
-        rgba(255,255,255,0) 25%,
-        rgba(255,255,255,.04) 45%,
-        rgba(255,255,255,0) 65%
-      );
-      opacity:.55;
-      transform: rotate(-8deg);
-      mix-blend-mode: overlay;
-      z-index:-1;
-    }
-
-    /* Fine grain */
+    /* Fine film grain */
     .grain{
       position:absolute;
       inset:0;
-      opacity:.12;
+      z-index:5;
+      pointer-events:none;
+      opacity:.10;
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.36'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
-      z-index:-1;
       animation: grainShift 9s steps(2) infinite;
     }
-
     @keyframes grainShift{
       0%{ transform: translate3d(0,0,0); }
-      25%{ transform: translate3d(-1.5%,1.2%,0); }
-      50%{ transform: translate3d(-0.5%,-1.4%,0); }
-      75%{ transform: translate3d(1.2%,0.8%,0); }
+      25%{ transform: translate3d(-1.2%,1.0%,0); }
+      50%{ transform: translate3d(-0.6%,-1.1%,0); }
+      75%{ transform: translate3d(1.0%,0.7%,0); }
       100%{ transform: translate3d(0,0,0); }
     }
 
-    /* ===================== */
-    /* Layout                */
-    /* ===================== */
+    /* =========================
+       Layout / Typography
+       ========================= */
     .wrap{
       min-height:100%;
       width:min(1120px, 92vw);
       margin:0 auto;
-      padding: 34px 0 18px;
+      padding: 34px 0 16px;
       display:flex;
       flex-direction:column;
     }
@@ -117,26 +136,30 @@
       display:flex;
       flex-direction:column;
       justify-content:center;
-      gap:26px;
-      padding: 46px 6px 52px;
+      gap:22px;
+      padding: 54px 6px 54px;
       max-width: 980px;
     }
 
-    /* Logo feels like a brand anchor (not an icon) */
-    .brandLogo{
-      height:76px;
-      width:auto;
-      margin-bottom: 8px;
-      filter:
-        drop-shadow(0 18px 42px rgba(0,0,0,.70))
-        drop-shadow(0 0 20px rgba(243,215,143,.14));
-      opacity:0;
-      transform: translateY(8px);
-      animation: riseIn .9s ease-out .15s forwards;
+    /* Logo treated as a mark (prevents banner stretching) */
+    .brandFrame{
+      width: min(520px, 78vw);
+      height: 104px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      margin-bottom: 6px;
+      filter: drop-shadow(0 18px 42px rgba(0,0,0,.70));
     }
-
-    @keyframes riseIn{
-      to{ opacity:1; transform: translateY(0); }
+    .brandLogo{
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      object-position: left center;
+      display:block;
+      opacity:0;
+      transform: translateY(10px);
+      animation: riseIn .9s ease-out .10s forwards;
     }
 
     .pill{
@@ -146,17 +169,17 @@
       padding:10px 14px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.035);
-      color: rgba(255,255,255,.74);
+      background: rgba(0,0,0,.24);
+      color: rgba(255,255,255,.82);
       font-size:13px;
       letter-spacing:.02em;
       width: fit-content;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      box-shadow: 0 10px 30px rgba(0,0,0,.30);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 12px 38px rgba(0,0,0,.32);
       opacity:0;
-      transform: translateY(8px);
-      animation: riseIn .9s ease-out .25s forwards;
+      transform: translateY(10px);
+      animation: riseIn .9s ease-out .18s forwards;
     }
 
     .dot{
@@ -170,13 +193,14 @@
     .headline{
       font-family: Fraunces, serif;
       font-weight:300;
-      font-size: clamp(40px, 5.2vw, 76px);
+      font-size: clamp(40px, 5.2vw, 78px);
       line-height:1.05;
       margin:0;
       letter-spacing: -0.01em;
+      text-shadow: 0 18px 60px rgba(0,0,0,.55);
       opacity:0;
-      transform: translateY(10px);
-      animation: riseIn 1s ease-out .32s forwards;
+      transform: translateY(12px);
+      animation: riseIn 1s ease-out .26s forwards;
     }
 
     .accent{
@@ -188,61 +212,84 @@
 
     .subhead{
       max-width:74ch;
-      color: rgba(255,255,255,.72);
+      color: rgba(255,255,255,.78);
       font-size:16px;
       line-height:1.7;
       margin:0;
+      text-shadow: 0 18px 60px rgba(0,0,0,.55);
+      opacity:0;
+      transform: translateY(12px);
+      animation: riseIn 1s ease-out .36s forwards;
+    }
+    .subhead strong{ color: rgba(255,255,255,.92); font-weight:500; }
+    .subhead em{ color: rgba(243,215,143,.92); font-style: normal; }
+
+    .location{
+      font-size:13px;
+      color: rgba(255,255,255,.72);
+      letter-spacing:.14em;
+      text-transform: uppercase;
+      margin-top: 2px;
       opacity:0;
       transform: translateY(10px);
-      animation: riseIn 1s ease-out .42s forwards;
+      animation: riseIn .9s ease-out .22s forwards;
     }
 
-    .subhead strong{
-      color: rgba(255,255,255,.90);
-      font-weight:500;
+    .fineLine{
+      width: min(520px, 78vw);
+      height:1px;
+      background: linear-gradient(90deg, rgba(243,215,143,.48), rgba(255,255,255,.10));
+      border-radius:999px;
+      opacity:.55;
+      margin-top: 10px;
     }
 
-    .subhead em{
-      color: rgba(243,215,143,.90);
-      font-style: normal;
-    }
-
-    /* Footer */
     .footer{
       text-align:center;
       font-size:12.5px;
-      color: rgba(255,255,255,.52);
+      color: rgba(255,255,255,.58);
       padding: 14px 0 10px;
+      text-shadow: 0 18px 60px rgba(0,0,0,.55);
     }
 
-    /* Mobile refinements */
+    @keyframes riseIn{
+      to{ opacity:1; transform: translateY(0); }
+    }
+
     @media (max-width: 860px){
-      .wrap{ padding-top: 24px; }
-      .hero{ padding: 34px 4px 40px; gap:22px; }
-      .brandLogo{ height:58px; }
-      .headline{ font-size: clamp(34px, 8vw, 52px); }
+      .wrap{ padding-top: 22px; }
+      .hero{ padding: 40px 4px 44px; gap:18px; }
+      .brandFrame{ height: 82px; }
+      .headline{ font-size: clamp(34px, 8vw, 54px); }
       .subhead{ font-size: 15px; }
     }
 
-    /* Reduce motion for accessibility */
     @media (prefers-reduced-motion: reduce){
       .grain{ animation:none; }
-      .brandLogo,.pill,.headline,.subhead{ animation:none; opacity:1; transform:none; }
+      .brandLogo,.pill,.headline,.subhead,.location{ animation:none; opacity:1; transform:none; }
+      .bgSlide{ transition:none; }
     }
   </style>
 </head>
 
 <body>
   <div class="bg" aria-hidden="true">
-    <div class="lightSweep"></div>
+    <div id="bgA" class="bgSlide isActive"></div>
+    <div id="bgB" class="bgSlide"></div>
+
+    <div class="alpine"></div>
+    <div class="warmth"></div>
     <div class="vignette"></div>
     <div class="grain"></div>
   </div>
 
   <main class="wrap">
     <section class="hero">
-      <!-- Make sure your logo is located at: /assets/milk-honey-logo.png -->
-      <img src="./assets/milk-honey-logo.png" class="brandLogo" alt="The Milk and Honey Homes">
+      <div class="brandFrame">
+        <img src="./assets/milk-honey-logo.png" class="brandLogo" alt="The Milk and Honey Homes">
+      </div>
+
+      <div class="location">PARK CITY, UTAH</div>
 
       <div class="pill">
         <span class="dot"></span>
@@ -258,6 +305,8 @@
         <strong>The Milk and Honey Homes</strong> is building a refined collection of luxury rentals —
         thoughtfully designed spaces for elevated living. <em>Coming soon.</em>
       </p>
+
+      <div class="fineLine"></div>
     </section>
 
     <footer class="footer">
@@ -266,7 +315,86 @@
   </main>
 
   <script>
+    // Year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // =========================
+    // Background Image Engine
+    // =========================
+
+    // 1) Park City nature/mountain backgrounds (use these first)
+    const NATURE_LIST = [
+      "./assets/backgrounds/parkcity-01.jpg",
+      "./assets/backgrounds/parkcity-02.jpg",
+      "./assets/backgrounds/parkcity-03.jpg",
+    ];
+
+    // 2) Property photos (optional, later)
+    // If you upload these, you can set USE_PROPERTY_PHOTOS = true below.
+    const PROPERTY_LIST = [
+      "./assets/photos/01.jpg",
+      "./assets/photos/02.jpg",
+      "./assets/photos/03.jpg",
+    ];
+
+    // Choose what to run:
+    // - false = nature only (recommended until property photos are curated)
+    // - true  = mix in property photos (still cinematic/dark)
+    const USE_PROPERTY_PHOTOS = false;
+
+    const bgA = document.getElementById("bgA");
+    const bgB = document.getElementById("bgB");
+
+    const preload = (src) => new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = src;
+    });
+
+    (async () => {
+      // Build the final playlist
+      const desired = USE_PROPERTY_PHOTOS ? [...NATURE_LIST, ...PROPERTY_LIST] : [...NATURE_LIST];
+
+      // Keep only images that actually load (prevents “black” if filenames don’t match)
+      const ok = [];
+      for (const src of desired) {
+        const loaded = await preload(src);
+        if (loaded) ok.push(src);
+      }
+
+      // If nothing loads, stay cinematic-dark
+      if (!ok.length) {
+        bgA.style.backgroundImage =
+          "radial-gradient(1200px 900px at 18% 20%, rgba(160,195,255,.10), transparent 62%)," +
+          "radial-gradient(820px 540px at 26% 22%, rgba(243,215,143,.18), transparent 62%)," +
+          "linear-gradient(to bottom, #050507, #0b0b12 60%, #050507)";
+        bgA.classList.add("isActive");
+        return;
+      }
+
+      // First image
+      let i = 0;
+      let activeIsA = true;
+      bgA.style.backgroundImage = `url('${ok[0]}')`;
+
+      // Slow luxury fade
+      const INTERVAL_MS = 12000;
+
+      setInterval(() => {
+        i = (i + 1) % ok.length;
+        const next = ok[i];
+
+        const show = activeIsA ? bgB : bgA;
+        const hide = activeIsA ? bgA : bgB;
+
+        show.style.backgroundImage = `url('${next}')`;
+        show.classList.add("isActive");
+        hide.classList.remove("isActive");
+
+        activeIsA = !activeIsA;
+      }, INTERVAL_MS);
+    })();
   </script>
 </body>
 </html>
