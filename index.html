@@ -113,32 +113,49 @@
     }
 
     /* Logo: quiet, editorial, integrated */
-    .logoRow{
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      gap: 10px;
-      margin-left:-6px;  /* hugs the edge */
-      margin-top:0;
-      position:relative;
-      z-index:2;
-    }
+  .logoRow{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 
-    .logoShell{
-      background:none;
-      border:none;
-      box-shadow:none;
-      padding:0;
-      backdrop-filter:none;
-    }
+  position: absolute;
+  top: 36px;
+  left: 40px;
+  z-index: 20;
+}
 
-    .brandLogo{
-      width: 150px;      /* smaller = more luxury */
-      height:auto;
-      opacity: 0.55;     /* KEY: stop shouting */
-      filter: drop-shadow(0 6px 18px rgba(0,0,0,.35));
-      display:block;
-    }
+.logoShell{
+  position: relative;
+  padding: 14px 18px;
+  border-radius: 20px;
+
+  /* Soft glass base so logo is readable */
+  background: radial-gradient(circle at center, rgba(20,20,24,.55), rgba(20,20,24,.15));
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Subtle depth */
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.45),
+    inset 0 0 0 1px rgba(255,255,255,.08);
+
+  overflow: visible;
+}
+
+.brandLogo{
+  width: 180px;
+  height: auto;
+  display: block;
+  opacity: .98;
+
+  /* Cinematic halo + glow */
+  filter:
+    drop-shadow(0 12px 28px rgba(0,0,0,.55))        /* depth shadow */
+    drop-shadow(0 0 26px rgba(243,215,143,.55))    /* gold halo */
+    drop-shadow(0 0 60px rgba(243,215,143,.25));   /* soft aura */
+}
 
     .location{
       font-size:12px;
@@ -240,12 +257,16 @@
   <div class="grain" aria-hidden="true"></div>
 
   <main class="wrap">
-    <header class="logoRow">
-      <div class="logoShell">
-        <img class="brandLogo" src="./assets/milk-honey-logo.png" alt="The Milk and Honey Homes">
-      </div>
-      <div class="location">PARK CITY, UTAH</div>
-    </header>
+  <header class="logoRow">
+    <div class="logoShell">
+      <img 
+        class="brandLogo" 
+        src="./assets/milk-honey-logo.png" 
+        alt="The Milk and Honey Homes">
+    </div>
+
+    <div class="location">PARK CITY, UTAH</div>
+  </header>
 
     <section class="hero">
       <div class="pill">
