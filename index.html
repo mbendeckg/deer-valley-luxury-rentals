@@ -115,8 +115,8 @@
     /* Logo: quiet, editorial, integrated */
 .logoRow{
   position:fixed;
-  top:28px;
-  left:28px;
+  top:34px;
+  left:34px;          /* move away from edge */
   z-index:5;
 
   display:flex;
@@ -124,29 +124,20 @@
   align-items:flex-start;
   gap:10px;
 
-  /* subtle readability on busy photos */
-  padding: 2px 0;
+  padding: 4px 0;
 }
 
-.logoShell{
-  position: relative;
-  width: 210px;      /* a touch bigger */
-  height: 110px;
-  overflow: visible; /* allow halo to bloom */
-}
-
-/* main halo bloom */
 .logoShell::before{
   content:"";
   position:absolute;
-  left:-70px;
-  top:-60px;
-  width: 360px;
-  height: 260px;
+  left:-40px;
+  top:-50px;
+  width: 320px;
+  height: 230px;
   background:
-    radial-gradient(circle at 40% 40%,
-      rgba(243,215,143,.48),
-      rgba(243,215,143,.18) 35%,
+    radial-gradient(circle at 45% 40%,
+      rgba(243,215,143,.50),
+      rgba(243,215,143,.20) 35%,
       rgba(0,0,0,0) 70%);
   filter: blur(18px);
   opacity: .95;
@@ -171,20 +162,20 @@
   z-index:-1;
 }
 .brandLogo{
-  width: 520px;     /* big so we can crop into only MH+bee area */
+  width: 460px;        /* slightly smaller, more refined */
   height:auto;
   display:block;
 
-  /* crop position: show the MH + bee area */
-  transform: translate(-165px, -72px);
+  /* Reposition crop so MH is centered and not cut */
+  transform: translate(-120px, -70px);
 
   opacity: 1;
 
-  /* make gold pop without looking neon */
+  /* Elegant gold glow */
   filter:
     drop-shadow(0 10px 22px rgba(0,0,0,.55))
-    drop-shadow(0 0 24px rgba(243,215,143,.55))
-    drop-shadow(0 0 10px rgba(255,255,255,.12));
+    drop-shadow(0 0 26px rgba(243,215,143,.65))
+    drop-shadow(0 0 12px rgba(255,255,255,.18));
 }
     .location{
       font-size:12px;
