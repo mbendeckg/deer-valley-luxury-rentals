@@ -127,34 +127,42 @@
 
 .logoShell{
   position: relative;
-  padding: 14px 18px;
-  border-radius: 20px;
+  padding: 0;                 /* remove the badge padding */
+  background: none;           /* remove the gray card */
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
 
-  /* Soft glass base so logo is readable */
-  background: radial-gradient(circle at center, rgba(20,20,24,.55), rgba(20,20,24,.15));
-
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-
-  /* Subtle depth */
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.45),
-    inset 0 0 0 1px rgba(255,255,255,.08);
-
-  overflow: visible;
+/* soft halo behind the logo (this is the magic) */
+.logoShell::before{
+  content:"";
+  position:absolute;
+  left:-26px;
+  top:-18px;
+  width: 260px;
+  height: 150px;
+  background: radial-gradient(circle at 35% 35%,
+    rgba(243,215,143,.22),
+    rgba(0,0,0,0) 65%);
+  filter: blur(10px);
+  opacity: .95;
+  pointer-events:none;
+  z-index: -1;
 }
 
 .brandLogo{
-  width: 180px;
+  width: 205px;
   height: auto;
+  opacity: .95;
   display: block;
-  opacity: .98;
 
-  /* Cinematic halo + glow */
+  /* refined glow (less “graphic”, more luxury) */
   filter:
-    drop-shadow(0 12px 28px rgba(0,0,0,.55))        /* depth shadow */
-    drop-shadow(0 0 26px rgba(243,215,143,.55))    /* gold halo */
-    drop-shadow(0 0 60px rgba(243,215,143,.25));   /* soft aura */
+    drop-shadow(0 10px 24px rgba(0,0,0,.55))
+    drop-shadow(0 0 26px rgba(243,215,143,.28))
+    drop-shadow(0 0 10px rgba(255,255,255,.08));
 }
 
     .location{
