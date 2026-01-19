@@ -115,34 +115,34 @@
     /* Logo: quiet, editorial, integrated */
 .logoRow{
   position:fixed;
-  top:34px;
-  left:34px;          /* move away from edge */
+  top:42px;          /* a little lower */
+  left:52px;         /* move right so it's not glued to edge */
   z-index:5;
 
   display:flex;
   flex-direction:column;
   align-items:flex-start;
-  gap:10px;
-
-  padding: 4px 0;
+  gap:12px;
 }
 
 .logoShell::before{
   content:"";
   position:absolute;
-  left:-40px;
-  top:-50px;
-  width: 320px;
-  height: 230px;
+  left:-30px;
+  top:-40px;
+  width: 340px;
+  height: 260px;
+
   background:
     radial-gradient(circle at 45% 40%,
-      rgba(243,215,143,.50),
-      rgba(243,215,143,.20) 35%,
+      rgba(243,215,143,.55),
+      rgba(243,215,143,.28) 35%,
       rgba(0,0,0,0) 70%);
-  filter: blur(18px);
+
+  filter: blur(22px);
   opacity: .95;
   pointer-events:none;
-  z-index: -1;
+  z-index:-1;
 }
 
 /* secondary depth / vignette pad behind logo */
@@ -162,20 +162,20 @@
   z-index:-1;
 }
 .brandLogo{
-  width: 460px;        /* slightly smaller, more refined */
+  width: 440px;          /* refined scale */
   height:auto;
   display:block;
 
-  /* Reposition crop so MH is centered and not cut */
-  transform: translate(-120px, -70px);
+  /* Center the MH + bee better */
+  transform: translate(-95px, -68px);
 
   opacity: 1;
 
-  /* Elegant gold glow */
+  /* Gold clarity + depth */
   filter:
     drop-shadow(0 10px 22px rgba(0,0,0,.55))
-    drop-shadow(0 0 26px rgba(243,215,143,.65))
-    drop-shadow(0 0 12px rgba(255,255,255,.18));
+    drop-shadow(0 0 28px rgba(243,215,143,.85))
+    drop-shadow(0 0 10px rgba(255,255,255,.25));
 }
     .location{
       font-size:12px;
