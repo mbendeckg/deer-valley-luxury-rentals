@@ -127,42 +127,43 @@
 
 .logoShell{
   position: relative;
-  padding: 0;                 /* remove the badge padding */
-  background: none;           /* remove the gray card */
+  width: 148px;            /* controls logo block size */
+  height: 86px;            /* crop height */
+  overflow: hidden;        /* IMPORTANT: makes it crop */
+  border-radius: 0;        /* no badge */
+  background: none;
   border: none;
   box-shadow: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  padding: 0;
 }
 
 /* soft halo behind the logo (this is the magic) */
 .logoShell::before{
   content:"";
   position:absolute;
-  left:-26px;
-  top:-18px;
-  width: 260px;
-  height: 150px;
-  background: radial-gradient(circle at 35% 35%,
-    rgba(243,215,143,.22),
-    rgba(0,0,0,0) 65%);
-  filter: blur(10px);
-  opacity: .95;
+  inset:-40px;
+  background: radial-gradient(circle at 45% 35%,
+    rgba(243,215,143,.26),
+    rgba(0,0,0,0) 62%);
+  filter: blur(12px);
   pointer-events:none;
-  z-index: -1;
+  z-index:-1;
 }
 
 .brandLogo{
-  width: 205px;
+  width: 360px;            /* larger image so we can crop nicely */
   height: auto;
-  opacity: .95;
-  display: block;
+  opacity: 1;
+  display:block;
 
-  /* refined glow (less “graphic”, more luxury) */
+  /* move image so only MH + bee shows */
+  transform: translate(-108px, -22px);
+
+  /* make gold pop */
   filter:
-    drop-shadow(0 10px 24px rgba(0,0,0,.55))
-    drop-shadow(0 0 26px rgba(243,215,143,.28))
-    drop-shadow(0 0 10px rgba(255,255,255,.08));
+    drop-shadow(0 10px 18px rgba(0,0,0,.55))
+    drop-shadow(0 0 26px rgba(243,215,143,.42))
+    drop-shadow(0 0 10px rgba(255,255,255,.10));
 }
 
     .location{
